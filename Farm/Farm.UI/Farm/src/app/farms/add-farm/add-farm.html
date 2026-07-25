@@ -1,0 +1,180 @@
+<!-- add-farm.html -->
+<h2 mat-dialog-title class="dialog-title">
+  <mat-icon>add_circle</mat-icon>
+  Add New Farm
+</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <!-- رسالة الخطأ - تظهر فقط إذا وجد خطأ -->
+  @if (errorMessage) {
+    <div class="error-message">
+      <mat-icon>error</mat-icon>
+      {{ errorMessage }}
+    </div>
+  }
+  <br>
+  <form [formGroup]="farmForm" class="farm-form">
+
+    <!-- حقل اسم المزرعة -->
+
+    <div class="coordinates-row">
+      <mat-form-field appearance="outline" >
+        <mat-label>Farm Name</mat-label>
+        <input matInput formControlName="name" placeholder="e.g., Green Valley Farm">
+        <mat-icon matPrefix>agriculture</mat-icon>
+        @if (farmForm.get('name')?.hasError('required')) {
+          <mat-error>Farm name is required</mat-error>
+        }
+        @if (farmForm.get('name')?.hasError('minlength')) {
+          <mat-error>Name must be at least 3 characters</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Area</mat-label>
+        <mat-icon matPrefix>area_chart</mat-icon>
+        <input matInput formControlName="area" type="number" placeholder="Area"/>
+        <p matSuffix> km²</p>
+        @if (farmForm.get('area')?.hasError('required')) {
+          <mat-error>Area is required</mat-error>
+        }
+      </mat-form-field>
+
+    </div>
+    <!-- الخريطة - يختار المستخدم الموقع منها -->
+    <div class="map-section">
+      <label class="section-label">
+        <mat-icon>location_on</mat-icon>
+        Select farm location on map *
+      </label>
+      <app-farm-map
+        (locationSelected)="onLocationSelected($event)"
+        [interactive]="true"
+        [showSearchBox]="true">
+      </app-farm-map>
+    </div>
+
+    <!-- صف الإحداثيات (خط العرض وخط الطول) -->
+    <div class="coordinates-row">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Latitude</mat-label>
+        <input matInput formControlName="latitude" readonly>
+        <mat-icon matSuffix>pin_drop</mat-icon>
+        @if (farmForm.get('latitude')?.hasError('required')) {
+          <mat-error>Required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Longitude</mat-label>
+        <input matInput formControlName="longitude" readonly>
+        <mat-icon matSuffix>pin_drop</mat-icon>
+        @if (farmForm.get('longitude')?.hasError('required')) {
+          <mat-error>Required</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Formatted Address</mat-label>
+      <textarea matInput formControlName="formattedAddress" rows="2" readonly placeholder="Address will appear after selecting location"></textarea>
+    </mat-form-field>
+
+    <mat-label>WorkingHours</mat-label>
+    <div class="coordinates-row">
+      <mat-form-field>
+        <mat-label>StartTime</mat-label>
+        <input matInput formControlName="startWork" [matTimepicker]="picker1">
+        <mat-timepicker-toggle matIconSuffix [for]="picker1"/>
+        <mat-timepicker #picker1/>
+        @if (farmForm.get('startWork')?.hasError('required')) {
+          <mat-error>Required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>EndTime</mat-label>
+        <input matInput formControlName="endWork" [matTimepicker]="picker">
+        <mat-timepicker-toggle matIconSuffix [for]="picker"/>
+        <mat-timepicker #picker/>
+        @if (farmForm.get('endWork')?.hasError('required')) {
+          <mat-error>Required</mat-error>
+        }
+      </mat-form-field>
+
+    </div>
+
+    <mat-form-field>
+      <mat-label>Select WaterSource</mat-label>
+      <mat-select formControlName="waterSource">
+        <mat-option selected value="one">Well</mat-option>
+        <mat-option value="River">River</mat-option>
+        <mat-option value="Lake">Lake</mat-option>
+        <mat-option value="RainFed">RainFed</mat-option>
+        <mat-option value="Other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" rows="2" placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <!-- رفع الصورة مع المعاينة -->
+    <div class="image-upload-section">
+      <label class="section-label">
+        <mat-icon>image</mat-icon>
+        Farm Image (Optional)
+      </label>
+
+      <!-- منطقة رفع الصورة - تظهر فقط إذا لم توجد صورة -->
+      @if (!imagePreviewUrl && !isImageLoading) {
+        <div class="upload-area" (click)="fileInput.click()">
+          <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" style="display: none">
+          <mat-icon>cloud_upload</mat-icon>
+          <span>Click to select an image</span>
+          <small>jpg, png, ... (max 10MB)</small>
+        </div>
+      }
+
+      @if (isImageLoading) {
+        <div class="loading-area">
+          <mat-spinner diameter="40"></mat-spinner>
+          <span>Loading image...</span>
+        </div>
+      }
+
+      <!-- معاينة الصورة - تظهر بعد اختيار الصورة -->
+      @if (imagePreviewUrl && !isImageLoading) {
+        <div class="image-preview">
+          <img [src]="imagePreviewUrl" alt="Preview" class="preview-img">
+          <button type="button" class="remove-image-btn" (click)="removeSelectedImage()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+  </form>
+</mat-dialog-content>
+
+<!-- أزرار الإجراءات في أسفل النافذة -->
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-button (click)="cancel()" [disabled]="isLoading">
+    Cancel
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="saveFarm()"
+    [disabled]="farmForm.invalid || isLoading"
+    class="save-btn">
+    @if (!isLoading) {
+      <mat-icon>save</mat-icon>
+    }
+    @if (isLoading) {
+      <mat-spinner diameter="20"></mat-spinner>
+    }
+    {{ isLoading ? 'Saving...' : 'Save Farm' }}
+  </button>
+</mat-dialog-actions>

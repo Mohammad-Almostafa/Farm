@@ -1,0 +1,69 @@
+<div class="task-container">
+  <h2>
+  <mat-icon style="font-size: 30px;" matPrefix>agriculture</mat-icon>
+  Farms Management</h2>
+
+  <div class="table-responsive">
+    <table mat-table [dataSource]="dataSource()" class="mat-elevation-z8">
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row
+        *matRowDef="let row; columns: displayedColumns;"
+        (click)="openFarmDetails(row)"
+        class="mat-row"
+        title="more details"
+        >
+      </tr>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let farm"> {{farm.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> CreatedAt </th>
+        <td mat-cell *matCellDef="let farm"> {{farm.createdAt| date:'medium'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef> UpdatedAt </th>
+        <td mat-cell *matCellDef="let farm"> {{farm.updatedAt| date:'medium'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let farm"> {{farm.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="area">
+        <th mat-header-cell *matHeaderCellDef> Area </th>
+        <td mat-cell *matCellDef="let farm"> {{ farm.area }} km²</td>
+      </ng-container>
+
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef> Location </th>
+        <td mat-cell *matCellDef="let farm"> {{ farm.location }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ownerEmail">
+        <th mat-header-cell *matHeaderCellDef> Owner Email </th>
+        <td mat-cell *matCellDef="let farm"> {{ farm.owner.email }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let farm">
+          <button title="delete" mat-icon-button color="warn" (click)="$event.stopPropagation(); deleteFarm(farm.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    </table>
+  </div>
+</div>
+
+@if(dataSource().length === 0){
+  <div class="empty-state">
+    <p>No farms available.</p>
+  </div>
+}
+

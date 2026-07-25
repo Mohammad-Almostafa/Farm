@@ -1,0 +1,45 @@
+<mat-drawer-container class="home-container">
+  <mat-drawer #drawer mode="side" opened class="sidebar-container">
+    <mat-nav-list>
+      <div class="sidebar-item" [routerLink]="['/adminPage/statistics']">
+        <mat-icon>timeline</mat-icon>
+        <span>statistics</span>
+      </div>
+
+      <div class="sidebar-item" [routerLink]="['/adminPage/users']">
+        <mat-icon>person</mat-icon>
+        <span>users</span>
+      </div>
+
+      <div class="sidebar-item" [routerLink]="['/adminPage/farms']">
+        <mat-icon>agriculture</mat-icon>
+        <span>farms</span>
+      </div>
+
+      <div class="sidebar-item" [routerLink]="['/adminPage/fields']">
+        <mat-icon>crop</mat-icon>
+        <span>fields</span>
+      </div>
+
+      <div class="sidebar-item" [routerLink]="['/adminPage/crops']">
+        <mat-icon>grass</mat-icon>
+        <span>crops</span>
+      </div>
+
+      <div class="sidebar-item" [routerLink]="['/adminPage/sensors']">
+        <mat-icon>sensors</mat-icon>
+        <span>sensors</span>
+      </div>
+
+      <div class="sidebar-item" [routerLink]="['/adminPage/tasks']">
+        <mat-icon>tasks</mat-icon>
+        <span>Tasks</span>
+      </div>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

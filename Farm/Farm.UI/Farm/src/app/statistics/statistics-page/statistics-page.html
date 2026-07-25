@@ -1,0 +1,16 @@
+<mat-drawer-container class="home-container">
+  <mat-drawer #drawer mode="side" opened class="sidebar-container">
+    <div class="farms-list">
+      @for (farm of farmList(); track farm.id) {
+        <div (click)="changeFarm(farm.id)" class="farm-item">
+          <mat-icon>agriculture</mat-icon>
+          <span>{{ farm.name }}</span>
+        </div>
+      }
+    </div>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <app-statistics [farmId]="selectedFarmId()"></app-statistics>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,15 @@
+<div class="alerts-container">
+  <h2>🔔 Alerts</h2>
+  @if (alertService.alertsCount() === 0) {
+    <div class="no-alerts">✅ No new alerts</div>
+  } @else {
+    <div class="alerts-list">
+      @for (alert of alertService.alertsList(); track $index) {
+        <div class="alert-card">
+          <mat-icon>warning</mat-icon>
+          <span>{{ alert }}</span>
+        </div>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,24 @@
+.task-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 40px;
+  color: #999;
+}
+
+mat-slide-toggle {
+  --mdc-switch-selected-handle-color: #4caf50;
+  --mdc-switch-selected-track-color: #81c784;
+}

@@ -1,0 +1,85 @@
+<!-- add-farm.html -->
+<h2 mat-dialog-title class="dialog-title">
+  <mat-icon>add_circle</mat-icon>
+  Improve Crop
+</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <!-- رسالة الخطأ - تظهر فقط إذا وجد خطأ -->
+  @if (errorMessage) {
+    <div class="error-message">
+      <mat-icon>error</mat-icon>
+      {{ errorMessage }}
+    </div>
+  }
+  <br>
+
+  <form [formGroup]="cropForm" class="farm-form">
+
+    <div class="coordinates-row">
+      <mat-form-field appearance="outline" >
+        <mat-label>Next Watered</mat-label>
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <input matInput formControlName="nextWatered" [matDatepicker]="picker2">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Next Fertilization</mat-label>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <input matInput [matDatepicker]="picker1" formControlName="nextFertilization"/>
+      </mat-form-field>
+    </div>
+
+    <div class="coordinates-row">
+      <mat-form-field appearance="outline" >
+        <mat-label>Actual HarvestDate</mat-label>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <input matInput [matDatepicker]="picker" formControlName="actualHarvestDate">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>yield</mat-label>
+        <mat-icon matPrefix>info</mat-icon>
+        <input matInput formControlName="yield"/>
+        <p matSuffix> tons/hec</p>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>status</mat-label>
+      <mat-icon matPrefix>description</mat-icon>
+      <mat-select formControlName="status">
+        <mat-option selected value="Planted">Planted</mat-option>
+        <mat-option value="Harvested">Harvested</mat-option>
+        <mat-option value="Fallow">Fallow</mat-option>
+        <mat-option value="Infested">Infested</mat-option>
+        <mat-option value="Other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<!-- أزرار الإجراءات في أسفل النافذة -->
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-button (click)="cancel()" [disabled]="isLoading">
+    Cancel
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="saveCrop()"
+    [disabled]="cropForm.invalid || isLoading"
+    class="save-btn">
+    @if (!isLoading) {
+      <mat-icon>save</mat-icon>
+    }
+    @if (isLoading) {
+      <mat-spinner diameter="20"></mat-spinner>
+    }
+    {{ isLoading ? 'Saving...' : 'Save Farm' }}
+  </button>
+</mat-dialog-actions>

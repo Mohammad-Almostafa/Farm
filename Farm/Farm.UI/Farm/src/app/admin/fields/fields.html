@@ -1,0 +1,171 @@
+<div class="task-container">
+  <h2>
+  <mat-icon style="font-size: 30px;" matPrefix>crops</mat-icon>
+    Fields</h2>
+
+  <div class="table-responsive">
+    <table mat-table [dataSource]="dataSource()" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let field"> {{field.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> CreatedAt </th>
+        <td mat-cell *matCellDef="let field"> {{field.createdAt| date:'medium'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef> UpdatedAt </th>
+        <td mat-cell *matCellDef="let field"> {{field.updatedAt| date:'medium'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> FieldName </th>
+        <td mat-cell *matCellDef="let field">
+          @if (isEditing(field.id)) {
+            <div class="edit-field">
+              <input style="width: 80px;" matInput [(ngModel)]="field.name" placeholder="Fieldname" />
+            </div>
+          }@else{
+            {{field.name}}
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isPasture">
+        <th mat-header-cell *matHeaderCellDef> IsPasture </th>
+        <td mat-cell *matCellDef="let field">
+          @if (isEditing(field.id)){
+            <div>
+              <mat-checkbox  [(ngModel)]="field.isPasture"></mat-checkbox>
+            </div>
+          } @else {
+            {{ field.isPasture }}
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="area">
+        <th mat-header-cell *matHeaderCellDef> Area </th>
+        <td mat-cell *matCellDef="let field">
+          @if (isEditing(field.id)) {
+            <input style="width: 50px;" type="number" matInput [(ngModel)]="field.area" placeholder="area" />km²
+          }@else{
+            {{field.area}} km²
+          }
+          </td>
+      </ng-container>
+
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef> Location </th>
+        <td mat-cell *matCellDef="let field">
+          @if (isEditing(field.id)) {
+            <div style="background-color: rgb(221, 221, 221); border-radius: 10px; padding: 8px; width: 115px;" class="edit-field">
+              <mat-select [(ngModel)]="field.location">
+                <mat-option selected value="North">North</mat-option>
+                <mat-option value="North-West">North-West</mat-option>
+                <mat-option value="West">West</mat-option>
+                <mat-option value="South-West">South-West</mat-option>
+                <mat-option value="South">South</mat-option>
+                <mat-option value="South-East">South-East</mat-option>
+                <mat-option value="East">East</mat-option>
+                <mat-option value="North-East">North-East</mat-option>
+                <mat-option value="Mid">Mid</mat-option>
+                <mat-option value="Other">Other</mat-option>
+              </mat-select>
+            </div>
+          } @else {
+            {{ field.location }}
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="irrigationType">
+        <th mat-header-cell *matHeaderCellDef> IrrigationType </th>
+        <td mat-cell *matCellDef="let field">
+          @if (isEditing(field.id)) {
+            <div style="background-color: rgb(221, 221, 221); border-radius: 10px; padding: 8px; width: 132px;" class="edit-field">
+              <mat-select [(ngModel)]="field.irrigationType">
+                <mat-option selected value="Drip">Drip</mat-option>
+                <mat-option value="Sprinkler">Sprinkler</mat-option>
+                <mat-option value="Flood">Flood</mat-option>
+                <mat-option value="CenterPivot">CenterPivot</mat-option>
+                <mat-option value="Other">Other</mat-option>
+              </mat-select>
+            </div>
+          } @else {
+            {{ field.irrigationType }}
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="soilQuality">
+        <th mat-header-cell *matHeaderCellDef> SoilQuality</th>
+        <td mat-cell *matCellDef="let field">
+          @if (isEditing(field.id)) {
+            <div style="background-color: rgb(221, 221, 221); border-radius: 10px; padding: 8px; width: 117px;" class="edit-field">
+              <mat-select [(ngModel)]="field.soilQuality">
+                <mat-option selected value="Excellent">Excellent</mat-option>
+                <mat-option value="Good">Good</mat-option>
+                <mat-option value="Moderate">Moderate</mat-option>
+                <mat-option value="Poor">Poor</mat-option>
+                <mat-option value="Other">Other</mat-option>
+              </mat-select>
+            </div>
+          } @else {
+            {{ field.soilQuality }}
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="locatedInFarm">
+        <th mat-header-cell *matHeaderCellDef> In a farm</th>
+        <td mat-cell *matCellDef="let field">
+            {{ field.aFarm.name }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> <div style="text-align: center;">Edit</div>  </th>
+        <td mat-cell *matCellDef="let field">
+          @if (isEditing(field.id)) {
+            <div class="coordinates-row">
+              <button title="save" mat-icon-button color="primary" (click)="saveField(field)">
+                <mat-icon matPrefix>save</mat-icon>
+              </button>
+              <button title="cancel" mat-icon-button color="warn" (click)="cancelEdit()">
+                <mat-icon matSuffix>close</mat-icon>
+              </button>
+            </div>
+          } @else {
+            <div style="text-align: center;">
+              <button title="edit" mat-icon-button color="primary" (click)="startEdit(field)">
+                <mat-icon >mode_edit</mat-icon>
+              </button>
+            </div>
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let field">
+          <button title="delete" mat-icon-button color="warn" (click)="deleteField(field.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  @if(dataSource().length === 0){
+    <div class="empty-state">
+      <p>No Fields available.</p>
+    </div>
+  }
+</div>

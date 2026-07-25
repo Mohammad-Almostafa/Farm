@@ -1,0 +1,14 @@
+.col{
+  background-image: linear-gradient(to bottom, rgba(128, 255, 0, 0.425) , rgba(58, 116, 0, 0.39)); ;
+  color: rgb(0, 0, 138);
+}
+.example-spacer{
+  flex: 1 1 auto;
+}
+.imageLogo{
+  width: 2rem;
+  padding-right: .25rem;
+  border-radius: 50%;
+}
+
+

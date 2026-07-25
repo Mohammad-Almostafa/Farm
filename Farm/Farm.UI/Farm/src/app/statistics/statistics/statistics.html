@@ -1,0 +1,55 @@
+<!-- statistics.html -->
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Farm Statistics</mat-card-title>
+    <mat-card-subtitle>Overview for selected farm</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    @if(isLoading){
+      <div class="loading-spinner">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+    }
+
+    @if(stats() && !isLoading){
+      <div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-label">Total Area</span>
+            <span class="stat-value">{{ stats()?.farmArea }} km²</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Number of Fields</span>
+            <span class="stat-value">{{ stats()?.totalFields }}</span>
+          </div>
+          <div class="stat-item">
+          <span class="stat-label">Number of Sensors</span>
+          <span class="stat-value">{{ stats()?.totalSensors }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Pending Tasks</span>
+          <span class="stat-value">{{ stats()?.pendingTasks }}</span>
+        </div>
+      </div>
+
+      @if(pieChartData.length > 0){
+        <div class="chart-container">
+          <ngx-charts-advanced-pie-chart
+            [results]="pieChartData"
+            [scheme]="'cool'"
+            [gradient]="true"
+            [label]="'Crops'"
+            [view]="[980, 370]">
+          </ngx-charts-advanced-pie-chart>
+      </div>
+      }
+      @if(pieChartData.length === 0){
+        <div class="no-data-message">
+          No crop distribution data available.
+        </div>
+      }
+    </div>
+    }
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,29 @@
+<mat-drawer-container class="home-container">
+  <mat-drawer #drawer mode="side" opened class="sidebar-container">
+    <div class="farms-list">
+      @for (farm of farmList(); track farm.id) {
+        <div class="farm-item" (click)="changeFarm(farm.latitude, farm.longitude, farm.name, farm.location)">
+          <mat-icon>agriculture</mat-icon>
+          <span>{{ farm.name }}</span>
+        </div>
+      }
+    </div>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div class="weather-content">
+      @if (selectedLat() && selectedLon()) {
+        <div class="farm-info">
+          <h2>{{ selectedFarmName() }}</h2>
+          <p>Coordinates: {{ selectedLat() }}, {{ selectedLon() }}</p>
+        </div>
+        <app-weather [latitude]="selectedLat()" [longitude]="selectedLon()" [farmName]="selectedFarmName()" [farmLocation]="selectedFarmLocation()"></app-weather>
+      } @else {
+        <div class="placeholder">
+          <mat-icon>location_on</mat-icon>
+          <p>Select a farm from the sidebar to view weather information.</p>
+        </div>
+      }
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,19 @@
+<mat-toolbar class="col">
+  <img class="imageLogo" src="assets/images/farm.jpg" alt="logo">
+  <h1>FARM</h1>
+  <span class="example-spacer"></span>
+  <button matButton [routerLink]="['home']">Home</button>
+  <button matButton>About Us</button>
+  @if(isLoggedIn()){
+    <button matButton (click)="openProfileDialog()">
+      <img class="imageLogo" src="assets/images/profile.jpg">
+    </button>
+  }@else{
+    <button matButton [routerLink]="['signin']">SinIn</button>
+  }
+</mat-toolbar>
+
+<router-outlet />
+
+
+

@@ -1,0 +1,53 @@
+@if(isInLoad){
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100 p-t-85 p-b-20">
+        <form (ngSubmit)="login()" class="login100-form validate-form" [formGroup]="loginForm">
+          <span class="login100-form-title p-b-70">
+            <mat-icon style="font-size: 30px;" matPrefix>person</mat-icon>
+            Admin
+          </span>
+          <br>
+          <br>
+          <span class="login100-form-avatar">
+            <img class="imageLogo" src="assets/images/farm.jpg" alt="logo">
+        </span>
+        <br>
+        <br>
+        <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter username or email">
+          <input class="input100" type="text" formControlName="username_email" name="username_email"
+            [class.has-val]="loginForm.get('username_email')?.value">
+          <span class="focus-input100" data-placeholder="Username or Email"></span>
+        </div>
+        <br>
+        <br>
+        <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+          <input class="input100" type="password" formControlName="password" name="password"
+            [class.has-val]="loginForm.get('password')?.value">
+          <span class="focus-input100" data-placeholder="Password"></span>
+        </div>
+        <br>
+        <br>
+        <div class="container-login100-form-btn">
+          <button [disabled]="loginForm.invalid" class="login100-form-btn">
+            Login
+          </button>
+        </div>
+        <br>
+        @if(!errorMessage){
+          <br>
+        }@else{
+          <p class="text-danger">{{errorMessage}}</p>
+        }
+        <br>
+
+      </form>
+    </div>
+  </div>
+</div>
+<div id="dropDownSelect1"></div>
+}@else {
+  <div class="center1">
+    <mat-spinner></mat-spinner>
+  </div>
+}

@@ -1,0 +1,37 @@
+<div class="weather-container">
+  @if (isLoading()) {
+    <div class="loading">
+      <mat-spinner diameter="40"></mat-spinner>
+      <span>Loading weather...</span>
+    </div>
+  } @else if (error()) {
+    <div class="error">
+      <mat-icon>error</mat-icon>
+      <span>{{ error() }}</span>
+    </div>
+  } @else if (weatherData()) {
+    <mat-card class="weather-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>wb_sunny</mat-icon>
+        <mat-card-title>{{farmName()}}</mat-card-title>
+        <mat-card-subtitle>{{farmLocation()}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="weather-details">
+          <div class="weather-item">
+            <mat-icon>thermostat</mat-icon>
+            <span><strong>Temperature:</strong> {{ weatherData().current.temperature_2m }} °C</span>
+          </div>
+          <div class="weather-item">
+            <mat-icon>opacity</mat-icon>
+            <span><strong>Humidity:</strong> {{ weatherData().current.relative_humidity_2m }} %</span>
+          </div>
+          <div class="weather-item">
+            <mat-icon>air</mat-icon>
+            <span><strong>Wind Speed:</strong> {{ weatherData().current.wind_speed_10m }} km/h</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>

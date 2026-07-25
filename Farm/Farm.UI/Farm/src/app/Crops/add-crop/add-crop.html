@@ -1,0 +1,167 @@
+<!-- add-farm.html -->
+<h2 mat-dialog-title class="dialog-title">
+  <mat-icon>add_circle</mat-icon>
+  Add New Crop
+</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <!-- رسالة الخطأ - تظهر فقط إذا وجد خطأ -->
+  @if (errorMessage) {
+    <div class="error-message">
+      <mat-icon>error</mat-icon>
+      {{ errorMessage }}
+    </div>
+  }
+  <br>
+  <form [formGroup]="cropForm" class="farm-form">
+
+    <!-- حقل اسم المزرعة -->
+
+    <div class="coordinates-row">
+      <mat-form-field appearance="outline" >
+        <mat-label>Crop type</mat-label>
+        <mat-icon matPrefix>agriculture</mat-icon>
+        <input matInput formControlName="type" placeholder="Field one" [matAutocomplete]="auto1">
+          <mat-autocomplete #auto1="matAutocomplete">
+            @for (option of cropRefList(); track option) {
+              <mat-option [value]="option.name" (click)="loadCropRef(option.id)">{{option.name}}</mat-option>
+            }@empty {
+              <mat-spinner diameter="20"></mat-spinner>
+              <span>Loading suggestions...</span>
+            }
+          </mat-autocomplete>
+        @if (cropForm.get('type')?.hasError('required')) {
+          <mat-error>Farm name is required</mat-error>
+        }
+        @if (cropForm.get('type')?.hasError('minlength')) {
+          <mat-error>Name must be at least 3 characters</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Crop variety</mat-label>
+        <mat-icon matPrefix>schedule</mat-icon>
+        <input matInput formControlName="variety" placeholder="Variety" [matAutocomplete]="auto2"/>
+        @if (cropForm.get('variety')?.hasError('required')) {
+          <mat-error>Area is required</mat-error>
+        }
+        <mat-autocomplete #auto2="matAutocomplete">
+          @for (option of cropRef()?.variety_Refs; track option) {
+            <mat-option [value]="option.name" >{{option.name}}</mat-option>
+          }@empty {
+            <mat-spinner diameter="20"></mat-spinner>
+            <span>Loading suggestions...</span>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="coordinates-row">
+      <mat-form-field appearance="outline" >
+        <mat-label>Season</mat-label>
+        <mat-icon matPrefix>severe_cold</mat-icon>
+        <input matInput formControlName="season" placeholder="ex: Summer" [matAutocomplete]="auto3">
+        @if (cropForm.get('season')?.hasError('required')) {
+          <mat-error>Farm name is required</mat-error>
+        }
+        <mat-autocomplete #auto3="matAutocomplete">
+          @if(cropRef()) {
+            <mat-option [value]="cropRef()?.season">{{cropRef()?.season}}</mat-option>
+          }@else {
+            <mat-spinner diameter="20"></mat-spinner>
+            <span>Loading suggestions...</span>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Expected yield</mat-label>
+        <mat-icon matPrefix>info</mat-icon>
+        <input matInput formControlName="expectedYield" placeholder="Yield" [matAutocomplete]="auto4"/>
+        <p matSuffix> tons/hec</p>
+        @if (cropForm.get('expectedYield')?.hasError('required')) {
+          <mat-error>Area is required</mat-error>
+        }
+        <mat-autocomplete #auto4="matAutocomplete">
+          @if(cropRef()) {
+            <mat-option [value]="cropRef()?.yield">{{cropRef()?.yield}}</mat-option>
+          }@else {
+            <mat-spinner diameter="20"></mat-spinner>
+            <span>Loading suggestions...</span>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <mat-icon matPrefix>description</mat-icon>
+        <input matInput formControlName="description" placeholder="Description" [matAutocomplete]="auto5"/>
+        <mat-autocomplete #auto5="matAutocomplete">
+          @if(cropRef()) {
+            <mat-option [value]="cropRef()?.description">{{cropRef()?.description}}</mat-option>
+          }@else {
+            <mat-spinner diameter="20"></mat-spinner>
+            <span>Loading suggestions...</span>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+
+    <!-- رفع الصورة مع المعاينة -->
+    <div class="image-upload-section">
+      <label class="section-label">
+        <mat-icon>image</mat-icon>
+        Field Image (Optional)
+      </label>
+
+      <!-- منطقة رفع الصورة - تظهر فقط إذا لم توجد صورة -->
+      @if (!imagePreviewUrl && !isImageLoading) {
+        <div class="upload-area" (click)="fileInput.click()">
+          <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" style="display: none">
+          <mat-icon>cloud_upload</mat-icon>
+          <span>Click to select an image</span>
+          <small>jpg, png, ... (max 10MB)</small>
+        </div>
+      }
+
+      @if (isImageLoading) {
+        <div class="loading-area">
+          <mat-spinner diameter="40"></mat-spinner>
+          <span>Loading image...</span>
+        </div>
+      }
+
+      <!-- معاينة الصورة - تظهر بعد اختيار الصورة -->
+      @if (imagePreviewUrl && !isImageLoading) {
+        <div class="image-preview">
+          <img [src]="imagePreviewUrl" alt="Preview" class="preview-img">
+          <button type="button" class="remove-image-btn" (click)="removeSelectedImage()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+  </form>
+</mat-dialog-content>
+
+<!-- أزرار الإجراءات في أسفل النافذة -->
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-button (click)="cancel()" [disabled]="isLoading">
+    Cancel
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="saveCrop()"
+    [disabled]="cropForm.invalid || isLoading"
+    class="save-btn">
+    @if (!isLoading) {
+      <mat-icon>save</mat-icon>
+    }
+    @if (isLoading) {
+      <mat-spinner diameter="20"></mat-spinner>
+    }
+    {{ isLoading ? 'Saving...' : 'Save Crop' }}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,178 @@
+<div class="farms-container">
+  <div class="farms-header">
+    <div>
+      <h2>🌾 Fields</h2>
+      <p class="subtitle">Manage and show all of farms with fields</p>
+    </div>
+  </div>
+
+  <div class="search-section">
+    <div class="search-controls">
+      <div class="search-wrapper" #searchWrapper>
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search for a farm</mat-label>
+          <input
+          matInput
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()"
+          (focus)="toggleHistory()"
+          placeholder="Name, address, or location..."
+          autocomplete="off">
+          <mat-icon matSuffix>search</mat-icon>
+          @if(searchTerm){
+            <button
+            matSuffix
+            mat-icon-button
+            (click)="searchTerm = ''; onSearchChange()"
+            style="margin-right: 8px;">
+            <mat-icon>close</mat-icon>
+          </button>
+          }
+        </mat-form-field>
+        @if(showHistory && filteredSearchHistory.length > 0){
+          <div class="search-history-dropdown">
+            <div class="history-header">
+              <span>Suggestions ({{filteredSearchHistory.length}})</span>
+              <button (click)="clearAllHistory()" class="clear-all-btn">Clear all</button>
+            </div>
+            <div class="history-list">
+              @for(term of filteredSearchHistory; track $index){
+                <div class="history-item" (click)="selectFromHistory(term)">
+                  <mat-icon class="history-icon">history</mat-icon>
+                  <span class="history-term" [innerHTML]="highlightMatch(term)"></span>
+                  <button
+                    (click)="removeFromHistory(term, $event)"
+                    class="remove-btn"
+                    title="Remove">
+                    ✕
+                  </button>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <mat-form-field appearance="outline" class="sort-field">
+        <mat-label>Sort by</mat-label>
+        <mat-select [(value)]="sortBy" (selectionChange)="onSortChange()">
+          <mat-option value="name">Name (A-Z)</mat-option>
+          <mat-option value="createdat">Date added</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        mat-icon-button
+        class="sort-dir-btn"
+        (click)="sortDesc = !sortDesc; onSortChange()">
+        <mat-icon>{{ sortDesc ? 'arrow_downward' : 'arrow_upward' }}</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading-spinner">
+      <mat-spinner diameter="20"></mat-spinner>
+    </div>
+  }
+
+  @if (!isLoading()) {
+    @for (farm of farms(); track farm.id) {
+      <mat-card class="farm-card" >
+        <mat-card-header (click)="openFarmDetails(farm)">
+          <img mat-card-avatar src="assets/images/farm.jpg" alt="logo">
+          <mat-card-title><b>{{ farm.name }}</b></mat-card-title>
+          <mat-card-subtitle><b>{{ farm.location }}</b></mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          @if (farm.fields && farm.fields.length) {
+            <div class="fields-section">
+              <h3>Fields ({{ farm.fields.length }})</h3>
+              <div class="fields-grid">
+                @for (field of farm.fields; track field.id) {
+                  <mat-card class="field-card" appearance="outlined">
+                    <mat-card-header>
+                      <img mat-card-avatar src="assets/images/farm.jpg" alt="logo">
+                      <mat-card-title>{{ field.name }}</mat-card-title>
+                      <mat-card-subtitle>{{ field.location || 'Center' }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <div class="coordinates-row">
+                        <div>
+                          <div><strong>Area:</strong> {{ field.area }} Km²</div>
+                          <div><strong>Irrigation:</strong> {{ field.irrigationType }}</div>
+                          <div><strong>Soil Quality:</strong> {{ field.soilQuality }}</div>
+                          <div>
+                            <strong>Crop:</strong>
+                            @if(field.cropName){
+                              {{ field.cropName }}
+                              <button class="btn-add-new"
+                                (click)="openUpdateCrop(field.cropId)">
+                                <mat-icon>area_chart</mat-icon>
+                                new crop task
+                              </button>
+                            }
+                            @else{
+                              'No crop now'
+                              <button class="btn-add-new"
+                                (click)="openAddCrop(field.id)">
+                                <mat-icon>add_circle</mat-icon>
+                                NewCrop
+                              </button>
+                            }
+                          </div>
+                        </div>
+                        <div>
+                          <img [src]="field.imgUrl || 'assets/images/farm.jpg'" width="150" height="110" style="object-fit: cover;" />
+                        </div>
+                    </div>
+                    </mat-card-content>
+                  </mat-card>
+                }
+                <mat-card class="add-field" appearance="outlined" (click)="openAddField(farm.id)">
+                  <mat-card-header>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <div style="justify-content: center;" >
+                      <mat-icon>add_circle</mat-icon>
+                    </div>
+                  </mat-card-content>
+                  New Field
+                </mat-card>
+              </div>
+            </div>
+          } @else {
+            <p class="no-fields">No fields yet for this farm.</p>
+            <div class="fields-section">
+              <div class="fields-grid">
+                <mat-card class="add-field-no-items" appearance="outlined" (click)="openAddField(farm.id)">
+                  <mat-card-header>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <div style="justify-content: center;" >
+                      <mat-icon>add_circle</mat-icon>
+                    </div>
+                  </mat-card-content>
+                  New Field
+                </mat-card>
+              </div>
+            </div>
+          }
+
+        </mat-card-content>
+      </mat-card>
+    } @empty {
+      <div class="no-data">No farms with Fields found.</div>
+    }
+  }
+
+  <mat-paginator
+    [length]="pageEvent.length"
+    [pageSize]="pageEvent.pageSize"
+    [pageIndex]="pageEvent.pageIndex"
+    [pageSizeOptions]="[1, 4, 8, 12]"
+    (page)="onPageChange($event)"
+    aria-label="Select page number">
+  </mat-paginator>
+</div>

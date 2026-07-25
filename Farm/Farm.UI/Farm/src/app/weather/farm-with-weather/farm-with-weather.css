@@ -1,0 +1,70 @@
+.home-container {
+  height: calc(90vh - 64px);
+  width: 100%;
+}
+
+.sidebar-container {
+  width: 260px;
+  background: #f8f9fa;
+  border-right: 1px solid #e0e0e0;
+  padding: 16px;
+}
+
+.farms-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.farm-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.farm-item:hover {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.farm-item mat-icon {
+  color: #4caf50;
+}
+
+.weather-content {
+  padding: 24px;
+  height: 80%;
+  overflow-y: auto;
+}
+
+.farm-info {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.farm-info h2 {
+  margin: 0 0 4px 0;
+  color: #2e7d32;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  color: #999;
+  text-align: center;
+}
+
+.placeholder mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+}

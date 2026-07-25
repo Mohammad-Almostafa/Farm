@@ -1,0 +1,176 @@
+<!-- farm-details-dialog.component.html -->
+<h2 mat-dialog-title class="dialog-title">
+  <mat-icon>agriculture</mat-icon>
+</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <!-- حالة التحميل -->
+  @if (isLoadingNearby) {
+    <div class="loading-center">
+      <mat-spinner diameter="40"></mat-spinner>
+      <span>Loading nearby farms...</span>
+    </div>
+  }
+
+  <!-- خريطة المزرعة مع المزارع المجاورة -->
+  <div class="map-container">
+    <app-farm-map
+      [farmLocation]="farm"
+      [nearbyFarms]="nearbyFarms"
+      [interactive]="false"
+      [showSearchBox]="false"
+      [zoomLevel]="12">
+    </app-farm-map>
+  </div>
+
+  <!-- معلومات المزرعة -->
+  <div class="farm-info">
+
+    <div class="info-row">
+      <mat-icon>edit_note</mat-icon>
+      <span><strong>Name:</strong>
+        @if(isEditing()){
+          <input [(ngModel)]="farm.name">
+        }@else{
+          {{ farm.name }}
+        }
+      </span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon matPrefix>area_chart</mat-icon>
+      <span><strong>Area:</strong>
+        @if(isEditing()){
+          <input [(ngModel)]="farm.area" type="number">km²
+        }@else{
+          {{ farm.area }} km²
+        }
+      </span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>description</mat-icon>
+      <span><strong>Description:</strong>
+        @if(isEditing()){
+          <input [(ngModel)]="farm.description">
+        }@else{
+          {{ farm.description || 'No description' }}
+        }
+      </span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>location_on</mat-icon>
+      <span><strong>Address:</strong>
+        {{ farm.formattedAddress || farm.location }}
+      </span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>pin_drop</mat-icon>
+      <span><strong>Coordinates:</strong> {{ farm.latitude }}, {{ farm.longitude }}</span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>local_florist</mat-icon>
+      <span><strong>SoilType:</strong> {{ farm.soilType }}</span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>water_drop</mat-icon>
+      <span class="coordinates-row"><strong style="padding-right: 4px;">WaterSource:</strong>
+          @if(isEditing()){
+          <div style="background-color: rgb(221, 221, 221); border-radius: 10px; padding: 3px; width: 150px;" class="edit-field">
+            <mat-select [(ngModel)]="farm.waterSource">
+              <mat-option value="Well">Well</mat-option>
+              <mat-option value="River">River</mat-option>
+              <mat-option value="Lake">Lake</mat-option>
+              <mat-option value="RainFed">RainFed</mat-option>
+              <mat-option value="Other">Other</mat-option>
+            </mat-select>
+          </div>
+          }@else{
+            {{ farm.waterSource }}
+          }
+      </span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>not_started</mat-icon>
+      <span class="coordinates-row"><strong>WorkingHours:</strong>
+        @if(isEditing()){ <strong style="padding-left: 4px;">from:</strong>
+          <input style="width: 120px; height: 25px; border-radius: 6px; margin-right: 0px;" matInput [(ngModel)]="startWork" [matTimepicker]="picker1">
+          <mat-timepicker-toggle matIconSuffix [for]="picker1"/>
+          <mat-timepicker #picker1/>
+          <strong>to</strong>
+          <input style="width: 120px; height: 25px; border-radius: 6px; margin-right: 0px;" matInput [(ngModel)]="endWork" [matTimepicker]="picker">
+          <mat-timepicker-toggle matIconSuffix [for]="picker"/>
+          <mat-timepicker #picker/>
+        }@else{
+          {{ farm.workingHours }}
+        }
+      </span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>person</mat-icon>
+      <span class="coordinates-row"><strong style="padding-right: 4px;">Owner email:</strong>
+          @if(isEditing()){
+          <div style="background-color: rgb(221, 221, 221); border-radius: 10px; padding: 3px; width: 250px;" class="edit-field">
+            <mat-select [(ngModel)]="farm.ownerId">
+              @for (item of users(); track $index) {
+                <mat-option [value]="item.id">{{item.email}}</mat-option>
+              }
+            </mat-select>
+          </div>
+          }@else{
+            {{ farm.owner?.email }}
+          }
+      </span>
+    </div>
+    <!-- المزارع المجاورة (قائمة نصية) -->
+    @if (nearbyFarms.length > 0) {
+      <div class="nearby-section">
+        <div class="section-title">
+          <mat-icon>near_me</mat-icon>
+          <span>Nearby Farms (within 10km)</span>
+        </div>
+        <div class="nearby-list">
+          @for (nearby of nearbyFarms; track nearby.id) {
+            <div class="nearby-item">
+              <mat-icon>place</mat-icon>
+              <span>{{ nearby.name }}</span>
+              <span class="distance">
+                {{ nearby.distance?.toFixed(1) }} km
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  @if (isEditing()) {
+    <div class="coordinates-row">
+      <button mat-button color="primary" (click)="saveFarm()">
+        Save
+      </button>
+      <button mat-button color="warn" (click)="cancelEdit()">
+        Cancel
+      </button>
+    </div>
+  } @else {
+    <div style="text-align: center;">
+      <button mat-button color="primary" (click)="startEdit()">
+        Edit
+      </button>
+    </div>
+  }
+  <button mat-button (click)="close()">
+    Close
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,129 @@
+<div class="farms-container">
+  <div class="farms-header">
+    <div>
+      <h2>🌾 Farms</h2>
+      <p class="subtitle">Manage and show all of farms</p>
+    </div>
+    <button class="btn-add-new" (click)="openAddFarmDialog()">
+      <mat-icon>add_circle</mat-icon>
+      NewFarm
+    </button>
+  </div>
+
+  <div class="search-section">
+    <div class="search-controls">
+      <div class="search-wrapper" #searchWrapper>
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search for a farm</mat-label>
+          <input
+          matInput
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()"
+          (focus)="toggleHistory()"
+          placeholder="Name, address, or location..."
+          autocomplete="off">
+          <mat-icon matSuffix>search</mat-icon>
+          @if(searchTerm){
+            <button
+            matSuffix
+            mat-icon-button
+            (click)="searchTerm = ''; onSearchChange()"
+            style="margin-right: 8px;">
+            <mat-icon>close</mat-icon>
+          </button>
+          }
+        </mat-form-field>
+        @if(showHistory && filteredSearchHistory.length > 0){
+          <div class="search-history-dropdown">
+            <div class="history-header">
+              <span>Suggestions ({{filteredSearchHistory.length}})</span>
+              <button (click)="clearAllHistory()" class="clear-all-btn">Clear all</button>
+            </div>
+            <div class="history-list">
+              @for(term of filteredSearchHistory; track $index){
+                <div class="history-item" (click)="selectFromHistory(term)">
+                  <mat-icon class="history-icon">history</mat-icon>
+                  <span class="history-term" [innerHTML]="highlightMatch(term)"></span>
+                  <button
+                    (click)="removeFromHistory(term, $event)"
+                    class="remove-btn"
+                    title="Remove">
+                    ✕
+                  </button>
+                </div>
+              }
+            </div>
+          </div>
+        }
+    </div>
+
+    <mat-form-field appearance="outline" class="sort-field">
+      <mat-label>Sort by</mat-label>
+      <mat-select [(value)]="sortBy" (selectionChange)="onSortChange()">
+        <mat-option value="name">Name (A-Z)</mat-option>
+        <mat-option value="createdat">Date added</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button
+      mat-icon-button
+      class="sort-dir-btn"
+      (click)="sortDesc = !sortDesc; onSortChange()">
+      <mat-icon>{{ sortDesc ? 'arrow_downward' : 'arrow_upward' }}</mat-icon>
+    </button>
+  </div>
+  </div>
+  @if(!isLoaded) {
+    @if (pagedFarmList$ | async; as result) {
+      <div class="row">
+        @for (farm of result.items; track $index) {
+          <div class="column">
+            <mat-card class="example-card" appearance="outlined" (click)="openFarmDetails(farm)">
+              <mat-card-header>
+                <img mat-card-avatar src="assets/images/farm.jpg" alt="logo">
+                <mat-card-title>{{farm.name}}</mat-card-title>
+                <mat-card-subtitle>added at: {{farm.createdAt | date}}</mat-card-subtitle>
+              </mat-card-header>
+              <img class="matImage" mat-card-image [src]="farm.imgUrl || 'assets/images/farm.jpg'" alt="Farm image">
+              <mat-card-content>
+                <br>
+                <p style="overflow: hidden;"><b>Location: </b> {{farm.location}} </p>
+                <p style="overflow: hidden;"><b>WorkingHours: </b> {{farm.workingHours}} </p>
+
+              </mat-card-content>
+              <mat-card-actions>
+                <button matButton>see more..</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        }@empty {
+          <div class="no-items">
+            <p>there is no items!</p>
+          </div>
+        }
+      </div>
+    }@else {
+      <div class="no-items">
+        <p>there is no items!</p>
+      </div>
+    }
+  }@else {
+    <div class="center1">
+      <mat-spinner diameter="20"></mat-spinner>
+    </div>
+  }
+  <mat-paginator
+  [length]="pageEvent.length"
+  [pageSize]="pageEvent.pageSize"
+  [pageIndex]="pageEvent.pageIndex"
+  [pageSizeOptions]="[1, 6, 9, 12, 15]"
+  (page)="onPageChange($event)"
+  aria-label="Select page number">
+  </mat-paginator>
+  @if (!(pagedFarmList$ | async); as result) {
+    <div style="justify-items: center;">
+      <p style="color: green; font-size: large;"><b>Don’t have Farm ?! you can add new</b></p>
+    </div>
+  }
+</div>
+

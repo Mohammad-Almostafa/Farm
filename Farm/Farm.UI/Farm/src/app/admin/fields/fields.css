@@ -1,0 +1,33 @@
+.task-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 40px;
+  color: #999;
+}
+
+input{
+  border-style: unset;
+  background-color: rgb(221, 221, 221);
+}
+
+.mat-cell {
+  padding: 8px;
+}
+
+.coordinates-row {
+  display: flex;
+  justify-content: space-between;
+}

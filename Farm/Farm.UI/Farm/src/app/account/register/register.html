@@ -1,0 +1,85 @@
+@if(isInLoad){
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100 p-t-85 p-b-20">
+        <form (ngSubmit)="addUser()" class="login100-form validate-form" [formGroup]="accountFormsGroup">
+          <span class="login100-form-title p-b-70">
+            Welcome
+          </span>
+          <br>
+          <br>
+          <span class="login100-form-avatar">
+            <img class="imageLogo" src="assets/images/farm.jpg" alt="logo">
+          </span>
+          <br>
+          <br>
+          <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter username">
+            <input class="input100" type="text" formControlName="username" name="username"
+            [class.has-val]="accountFormsGroup.get('username')?.value">
+            <span class="focus-input100" data-placeholder="Username"></span>
+          </div>
+
+          @if (accountFormsGroup.get('username')?.errors?.['minlength']) {
+            <span class="text-danger">Username should be more than 3 char</span>
+          }
+          @if (accountFormsGroup.get('username')?.errors?.['required'] && accountFormsGroup.get('username')?.dirty) {
+            <span class="text-danger">Username is required</span>
+          }
+
+        <br>
+        <br>
+        <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter email">
+          <input class="input100" type="text" formControlName="email" name="email"
+          [class.has-val]="accountFormsGroup.get('email')?.value">
+          <span class="focus-input100" data-placeholder="Email"></span>
+        </div>
+
+        @if (accountFormsGroup.get('email')?.errors?.['email']) {
+          <span class="text-danger">Email should be like: example@example.com</span>
+        }
+        @if (accountFormsGroup.get('email')?.errors?.['required'] && accountFormsGroup.get('email')?.dirty) {
+          <span class="text-danger">Email is required</span>
+        }
+
+        <br>
+        <br>
+        <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+          <input class="input100" type="password" formControlName="password" name="password"
+          [class.has-val]="accountFormsGroup.get('password')?.value">
+          <span class="focus-input100" data-placeholder="Password"></span>
+        </div>
+
+        @if (accountFormsGroup.get('password')?.errors?.['required'] && accountFormsGroup.get('password')?.dirty) {
+            <span class="text-danger">Password is required</span>
+          }
+
+          @if (accountFormsGroup.get('password')?.errors?.['minlength']) {
+            <span class="text-danger">password should be more than 5 char</span>
+          }
+
+          <br>
+        @if(!errorMessage()){
+          <br>
+        }@else{
+          <p class="text-danger">{{errorMessage()}}</p>
+        }
+        <br>
+
+          <div class="container-login100-form-btn">
+            <button type="submit" (click)="beInLoad()" [disabled]="accountFormsGroup.invalid" class="login100-form-btn">
+              Register
+            </button>
+          </div>
+          <br>
+          <br>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="dropDownSelect1"></div>
+}@else {
+  <div class="center1">
+    <mat-spinner></mat-spinner>
+  </div>
+}

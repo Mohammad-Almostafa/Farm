@@ -1,0 +1,114 @@
+<div class="task-container">
+  <h2>
+  <mat-icon style="font-size: 30px;" matPrefix>person</mat-icon>
+    Users</h2>
+
+  <div class="table-responsive">
+    <table mat-table [dataSource]="dataSource()" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> CreatedAt </th>
+        <td mat-cell *matCellDef="let user"> {{user.createdAt| date:'medium'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef> UpdatedAt </th>
+        <td mat-cell *matCellDef="let user"> {{user.updatedAt| date:'medium'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef> UserName </th>
+        <td mat-cell *matCellDef="let user">
+          @if (isEditing(user.id)) {
+            <div class="edit-field">
+              <input style="width: 115px;" matInput [(ngModel)]="user.userName" placeholder="Username" />
+            </div>
+          }@else{
+            {{user.userName}}
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let user">
+          @if (isEditing(user.id)) {
+            <div class="edit-field">
+              <input matInput [(ngModel)]="user.email" placeholder="Email" />
+            </div>
+          } @else {
+            {{ user.email }}
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="password">
+        <th mat-header-cell *matHeaderCellDef> Password Hash </th>
+        <td mat-cell *matCellDef="let user"> ********* </td>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef> Role </th>
+        <td mat-cell *matCellDef="let user">
+          @if (isEditing(user.id)) {
+            <div style="background-color: rgb(221, 221, 221); border-radius: 10px; padding: 8px;" class="edit-field">
+              <mat-select [(ngModel)]="user.role">
+                <mat-option selected value="Admin">Admin</mat-option>
+                <mat-option value="Eng">Eng</mat-option>
+                <mat-option value="Farmer">Farmer</mat-option>
+                <mat-option value="Viewer">Viewer</mat-option>
+              </mat-select>
+            </div>
+          } @else {
+            {{ user.role }}
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> <div style="text-align: center;">Edit</div>  </th>
+        <td mat-cell *matCellDef="let user">
+          @if (isEditing(user.id)) {
+            <div class="coordinates-row">
+              <button title="save" mat-icon-button color="primary" (click)="saveUser(user)">
+                <mat-icon matPrefix>save</mat-icon>
+              </button>
+              <button title="cancel" mat-icon-button color="warn" (click)="cancelEdit()">
+                <mat-icon matSuffix>close</mat-icon>
+              </button>
+            </div>
+          } @else {
+            <div style="text-align: center;">
+              <button title="edit" mat-icon-button color="primary" (click)="startEdit(user)">
+                <mat-icon >mode_edit</mat-icon>
+              </button>
+            </div>
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let user">
+          <button title="delete" mat-icon-button color="warn" (click)="deleteUser(user.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  @if(dataSource().length === 0){
+    <div class="empty-state">
+      <p>No Users available.</p>
+    </div>
+  }
+</div>

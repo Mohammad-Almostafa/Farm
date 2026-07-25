@@ -1,0 +1,55 @@
+<mat-drawer-container class="home-container">
+  <mat-drawer #drawer mode="side" opened class="sidebar-container">
+    <mat-nav-list>
+      <div class="sidebar-item" [routerLink]="['/home/statistics']">
+        <mat-icon>timeline</mat-icon>
+        <span>statistics</span>
+      </div>
+
+      <mat-expansion-panel class="sidebar-expansion" #farmsPanel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>agriculture</mat-icon>
+            <span>farms</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-nav-list class="sub-nav">
+          <div class="sidebar-item sub-item" [routerLink]="['/home/farms']" routerLinkActive="active-link" (click)="farmsPanel.close()">
+            <mat-icon>list</mat-icon>
+            <span>farm List</span>
+          </div>
+          <div class="sidebar-item sub-item" [routerLink]="['/home/fields']" routerLinkActive="active-link" (click)="farmsPanel.close()">
+            <mat-icon>crop</mat-icon>
+            <span>fields</span>
+          </div>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+      <div class="sidebar-item" [routerLink]="['/home/sensors']" routerLinkActive="active-link">
+        <mat-icon>sensors</mat-icon>
+        <span>sensors</span>
+      </div>
+
+      <div class="sidebar-item" [routerLink]="['/home/weather']" routerLinkActive="active-link">
+        <mat-icon>cloud</mat-icon>
+        <span>weather</span>
+      </div>
+
+      <div class="sidebar-item" [routerLink]="['/home/alerts']">
+        <mat-icon>warning</mat-icon>
+        <span matBadge="{{ alertService.alertsCount()? alertService.alertsCount() : null }}" matBadgeOverlap="false" >alerts</span>
+      </div>
+
+      <div class="sidebar-item" [routerLink]="['/home/tasks']">
+        <mat-icon>tasks</mat-icon>
+        <span>Tasks</span>
+      </div>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

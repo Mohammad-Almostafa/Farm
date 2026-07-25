@@ -1,0 +1,144 @@
+<!-- add-farm.html -->
+<h2 mat-dialog-title class="dialog-title">
+  <mat-icon>add_circle</mat-icon>
+  Add New Field
+</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <!-- رسالة الخطأ - تظهر فقط إذا وجد خطأ -->
+  @if (errorMessage) {
+    <div class="error-message">
+      <mat-icon>error</mat-icon>
+      {{ errorMessage }}
+    </div>
+  }
+  <br>
+  <form [formGroup]="fieldForm" class="farm-form">
+
+    <!-- حقل اسم المزرعة -->
+
+    <div class="coordinates-row">
+      <mat-form-field appearance="outline" >
+        <mat-label>Field Name</mat-label>
+        <input matInput formControlName="name" placeholder="Field one">
+        <mat-icon matPrefix>agriculture</mat-icon>
+        @if (fieldForm.get('name')?.hasError('required')) {
+          <mat-error>Farm name is required</mat-error>
+        }
+        @if (fieldForm.get('name')?.hasError('minlength')) {
+          <mat-error>Name must be at least 3 characters</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Area</mat-label>
+        <mat-icon matPrefix>area_chart</mat-icon>
+        <input matInput formControlName="area" type="number" placeholder="Area"/>
+        <p matSuffix> km²</p>
+        @if (fieldForm.get('area')?.hasError('required')) {
+          <mat-error>Area is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-checkbox formControlName="isPasture">Pasture?</mat-checkbox>
+    </div>
+
+    <div class="coordinates-row">
+      <mat-form-field>
+        <mat-label>Select Location</mat-label>
+        <mat-select formControlName="location">
+          <mat-option selected value="North">North</mat-option>
+          <mat-option value="North-West">North-West</mat-option>
+          <mat-option value="West">West</mat-option>
+          <mat-option value="South-West">South-West</mat-option>
+          <mat-option value="South">South</mat-option>
+          <mat-option value="South-East">South-East</mat-option>
+          <mat-option value="East">East</mat-option>
+          <mat-option value="North-East">North-East</mat-option>
+          <mat-option value="Mid">Mid</mat-option>
+          <mat-option value="Other">Other</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Select irrigationType</mat-label>
+        <mat-select formControlName="irrigationType">
+          <mat-option selected value="Drip">Drip</mat-option>
+          <mat-option value="Sprinkler">Sprinkler</mat-option>
+          <mat-option value="Flood">Flood</mat-option>
+          <mat-option value="CenterPivot">CenterPivot</mat-option>
+          <mat-option value="Other">Other</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Select soilQuality</mat-label>
+      <mat-select formControlName="soilQuality">
+        <mat-option selected value="Excellent">Excellent</mat-option>
+        <mat-option value="Good">Good</mat-option>
+        <mat-option value="Moderate">Moderate</mat-option>
+        <mat-option value="Poor">Poor</mat-option>
+        <mat-option value="Other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <!-- رفع الصورة مع المعاينة -->
+    <div class="image-upload-section">
+      <label class="section-label">
+        <mat-icon>image</mat-icon>
+        Field Image (Optional)
+      </label>
+
+      <!-- منطقة رفع الصورة - تظهر فقط إذا لم توجد صورة -->
+      @if (!imagePreviewUrl && !isImageLoading) {
+        <div class="upload-area" (click)="fileInput.click()">
+          <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" style="display: none">
+          <mat-icon>cloud_upload</mat-icon>
+          <span>Click to select an image</span>
+          <small>jpg, png, ... (max 10MB)</small>
+        </div>
+      }
+
+      @if (isImageLoading) {
+        <div class="loading-area">
+          <mat-spinner diameter="40"></mat-spinner>
+          <span>Loading image...</span>
+        </div>
+      }
+
+      <!-- معاينة الصورة - تظهر بعد اختيار الصورة -->
+      @if (imagePreviewUrl && !isImageLoading) {
+        <div class="image-preview">
+          <img [src]="imagePreviewUrl" alt="Preview" class="preview-img">
+          <button type="button" class="remove-image-btn" (click)="removeSelectedImage()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+  </form>
+</mat-dialog-content>
+
+<!-- أزرار الإجراءات في أسفل النافذة -->
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-button (click)="cancel()" [disabled]="isLoading">
+    Cancel
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="saveField()"
+    [disabled]="fieldForm.invalid || isLoading"
+    class="save-btn">
+    @if (!isLoading) {
+      <mat-icon>save</mat-icon>
+    }
+    @if (isLoading) {
+      <mat-spinner diameter="20"></mat-spinner>
+    }
+    {{ isLoading ? 'Saving...' : 'Save Field' }}
+  </button>
+</mat-dialog-actions>

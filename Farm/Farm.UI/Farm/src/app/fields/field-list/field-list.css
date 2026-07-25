@@ -1,0 +1,276 @@
+.farms-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.farms-header h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.subtitle {
+  margin: 0.25rem 0 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.farm-card {
+  margin-bottom: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.fields-section {
+  margin-top: 1rem;
+}
+
+.fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.field-card {
+  background-color: #f9f9f9;
+}
+
+.field-card mat-card-title {
+  font-size: 1rem;
+}
+
+.no-fields, .no-data {
+  text-align: center;
+  color: #999;
+  padding: 3rem;
+  border-radius: 8px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 19vh;
+}
+
+.coordinates-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+/* search */
+.search-section {
+  margin: 1rem 1rem 0 1rem;
+}
+
+.search-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.541);
+  padding: 0.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* حقل البحث */
+.search-field {
+  flex: 3;
+  min-width: 200px;
+}
+
+/* حقل الترتيب */
+.sort-field {
+  flex: 1;
+  min-width: 160px;
+}
+
+/* زر اتجاه الترتيب */
+.sort-dir-btn {
+  background: #f5f5f5;
+  transition: background 0.2s;
+}
+
+.sort-dir-btn:hover {
+  background: #e0e0e0;
+}
+
+.search-wrapper {
+  flex: 3;
+  position: relative;
+  min-width: 200px;
+}
+
+.search-field {
+  width: 100%;
+}
+
+/* 🆕 تنسيق قائمة سجل البحث المنسدلة */
+.search-history-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  margin-top: 4px;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #eee;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.clear-all-btn {
+  background: none;
+  border: none;
+  color: #f44336;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.clear-all-btn:hover {
+  background: #ffebee;
+}
+
+.history-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.history-item:hover {
+  background: #f5f5f5;
+}
+
+.history-icon {
+  font-size: 1.1rem;
+  color: #999;
+}
+
+.history-term {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #bbb;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.history-item:hover .remove-btn {
+  opacity: 1;
+}
+
+.remove-btn:hover {
+  color: #f44336;
+  background: #ffebee;
+}
+
+.highlight {
+  background-color: #3bff65;
+  font-weight: bold;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+.btn-add-new {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.btn-add-new:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.btn-add-new mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.add-field{
+  transition: all 0.3s ease;
+  justify-content: center;
+  align-items: center;
+  border-style: dashed;
+  cursor: pointer;
+
+  &:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+  }
+}
+
+.add-field-no-items{
+  transition: all 0.3s ease;
+  justify-content: center;
+  align-items: center;
+  border-style: dashed;
+  cursor: pointer;
+  height: 200px;
+
+  &:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+  }
+}

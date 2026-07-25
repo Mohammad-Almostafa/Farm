@@ -1,0 +1,65 @@
+.dialog-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2e7d32;
+  margin: 0;
+  padding: 1rem 1.5rem 0;
+}
+
+.dialog-content {
+  padding: 1rem 1.5rem;
+  min-width: 500px;
+  max-width: 600px;
+}
+
+@media (max-width: 640px) {
+  .dialog-content {
+    min-width: auto;
+    padding: 1rem;
+  }
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.farm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: calc(50% - 0.5rem);
+}
+
+.coordinates-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.dialog-actions {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.save-btn {
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+

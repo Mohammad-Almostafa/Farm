@@ -1,0 +1,102 @@
+<!-- farm-details-dialog.component.html -->
+<h2 mat-dialog-title class="dialog-title">
+  <mat-icon>agriculture</mat-icon>
+  {{ farm.name }}
+</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <!-- حالة التحميل -->
+  @if (isLoadingNearby) {
+    <div class="loading-center">
+      <mat-spinner diameter="40"></mat-spinner>
+      <span>Loading nearby farms...</span>
+    </div>
+  }
+
+  <!-- خريطة المزرعة مع المزارع المجاورة -->
+  <div class="map-container">
+    <app-farm-map
+      [farmLocation]="farm"
+      [nearbyFarms]="nearbyFarms"
+      [interactive]="false"
+      [showSearchBox]="false"
+      [zoomLevel]="12">
+    </app-farm-map>
+  </div>
+
+  <!-- معلومات المزرعة -->
+  <div class="farm-info">
+
+    <div class="info-row">
+      <mat-icon>edit_note</mat-icon>
+      <span><strong>Name:</strong> {{ farm.name }}</span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>area_chart</mat-icon>
+      <span><strong>Area:</strong> {{ farm.area }} Km</span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>description</mat-icon>
+      <span><strong>Description:</strong> {{ farm.description || 'No description' }}</span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>location_on</mat-icon>
+      <span><strong>Address:</strong> {{ farm.formattedAddress || farm.location }}</span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>pin_drop</mat-icon>
+      <span><strong>Coordinates:</strong> {{ farm.latitude }}, {{ farm.longitude }}</span>
+    </div><div class="info-row">
+      <mat-icon>local_florist</mat-icon>
+      <span><strong>SoilType:</strong> {{ farm.soilType }}</span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>water_drop</mat-icon>
+      <span><strong>WaterSource:</strong> {{ farm.waterSource }}</span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>not_started</mat-icon>
+      <span><strong>WorkingHours:</strong> {{ farm.workingHours }}</span>
+    </div>
+
+    <div class="info-row">
+      <mat-icon>calendar_today</mat-icon>
+      <span><strong>Created at:</strong> {{ farm.createdAt | date:'medium' }}</span>
+    </div>
+
+    <!-- المزارع المجاورة (قائمة نصية) -->
+    @if (nearbyFarms.length > 0) {
+      <div class="nearby-section">
+        <div class="section-title">
+          <mat-icon>near_me</mat-icon>
+          <span>Nearby Farms (within 10km)</span>
+        </div>
+        <div class="nearby-list">
+          @for (nearby of nearbyFarms; track nearby.id) {
+            <div class="nearby-item">
+              <mat-icon>place</mat-icon>
+              <span>{{ nearby.name }}</span>
+              <span class="distance">
+                {{ nearby.distance?.toFixed(1) }} km
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-button (click)="close()">
+    Close
+  </button>
+</mat-dialog-actions>
