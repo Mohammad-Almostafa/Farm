@@ -409,13 +409,46 @@ namespace Farm.Infrastructure.Persistence
 
             //await _context.Crop_Refs.ExecuteDeleteAsync();
 
-            if(_context.Crop_Refs.Count() < 1)
+            if (_context.Crop_Refs.Count() < 1)
             {
                 await _context.Crop_Refs.AddRangeAsync(crops);
 
                 await _context.SaveChangesAsync();
             }
 
+            var fields = _context.Fields.Include(f => f.Sensors);
+
+            bool isAdded = false;
+            foreach (var field in fields)
+            {
+                if (field.Sensors.Count() == 0)
+                {
+                    isAdded = true;
+                    _context.Sensors.AddRange(new List<Sensor>
+                    {
+                        new Sensor { 
+                            Type = "Temperature",
+                            FieldId = field.Id,
+                            Status = "Active",
+                            SerialNumber = Guid.NewGuid().ToString(),
+                            Unit = "°C",
+                            MaxRange = 10, 
+                            MinRange = 0,
+                        },
+                        new Sensor { 
+                            Type = "Humidity", 
+                            FieldId = field.Id,
+                            Status = "Active",
+                            SerialNumber = Guid.NewGuid().ToString(),
+                            Unit = "°C",
+                            MaxRange = 10,
+                            MinRange = 0,
+                        },
+                    });
+                }
+            }
+
+            if (isAdded) await _context.SaveChangesAsync();
         }
     }
 }

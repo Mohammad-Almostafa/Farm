@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, input, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, signal, SimpleChanges } from '@angular/core';
 import { GetSensorsWithReadings} from '../../Models/getSensorReading';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -11,29 +11,58 @@ import { SignalRService } from '../../services/signalr-service';
   imports: [CommonModule, NgxChartsModule],
   templateUrl: './sensor-chart.html',
   styleUrl: './sensor-chart.css',
-  changeDetection: ChangeDetectionStrategy.Eager
 })
-export class SensorChart implements OnChanges, OnDestroy {
+export class SensorChart implements OnChanges, OnDestroy, OnInit {
+
   @Input() sensorsData: GetSensorsWithReadings[] | null = null;
 
-  chartData: { name: string; series: { name: string; value: number }[]; extra?: any }[] = [];
-  colorScheme: any = { domain: [] };
+  chartData = signal<{ name: string; series: { name: string; value: number }[]; extra?: any }[]>([]);
+  colorScheme = signal< any>({ domain: [] });
 
   // ✅ لتخزين معلومات الحساس المحدد
-  selectedSensorInfo: { name: string; serialNumber: string; sensorId: string } | null = null;
+  selectedSensorInfo = signal<{ name: string; serialNumber: string; sensorId: string } | null>(null);
 
   private signalRSubscription!: Subscription;
 
-  constructor(private signalRService: SignalRService) {}
+  constructor(private signalRService: SignalRService, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    this.signalRSubscription = this.signalRService.sensorDataReceived.subscribe(newReading => {
+      this.handleNewSensorReading(newReading);
+    }, err => console.log(err));
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['sensorsData'] && this.sensorsData) {
       this.updateChartData(this.sensorsData);
       this.generateColorScheme(this.sensorsData.length);
-      this.setupRealTimeUpdates();
-
     }
+    this.selectedSensorInfo.set(null)
   }
+
+  private handleNewSensorReading(newReading: { sensorId: string; value: number; timestamp: Date }): void {
+    if (!this.sensorsData) return;
+
+    const sensor = this.sensorsData.find(s => s.id === newReading.sensorId);
+    if (!sensor) {
+      console.warn(`Sensor with id ${newReading.sensorId} not found`);
+      return;
+    }
+
+    const newReadingEntry = {
+      sensorId: newReading.sensorId,
+      value: newReading.value,
+      readingTimestamp: newReading.timestamp
+    };
+
+    sensor.readings = [...sensor.readings, newReadingEntry];
+
+    this.sensorsData = [...this.sensorsData];
+
+    this.updateChartData(this.sensorsData);
+    this.cdr.detectChanges()
+  }
+
 
   private generateColorScheme(numSensors: number): void {
     const colorPalette = [
@@ -45,16 +74,16 @@ export class SensorChart implements OnChanges, OnDestroy {
     for (let i = 0; i < numSensors; i++) {
       domainColors.push(colorPalette[i % colorPalette.length]);
     }
-    this.colorScheme = { domain: domainColors };
+    this.colorScheme.set({ domain: domainColors });
   }
 
   private updateChartData(sensors: GetSensorsWithReadings[]): void {
     if (!sensors || sensors.length === 0) {
-      this.chartData = [];
+      this.chartData.set([]);
       return;
     }
 
-    this.chartData = sensors.map((sensor) => ({
+    this.chartData.set(sensors.map((sensor) => ({
       name: sensor.type || `Sensor ${sensor.id.substring(0, 6)}`,
       extra: {
         serialNumber: sensor.serialNumber,
@@ -66,55 +95,24 @@ export class SensorChart implements OnChanges, OnDestroy {
           name: new Date(reading.readingTimestamp).toLocaleString(),
           value: reading.value,
         })),
-    }));
+    })));
   }
 
   // ✅ دالة تُستدعى عند النقر على أي نقطة في الرسم البياني
   onSelect(event: any): void {
     if (event && event.series) {
       const seriesName = event.series;
-      const found = this.chartData.find(item => item.name === seriesName);
+      const found = this.chartData().find(item => item.name === seriesName);
       if (found && found.extra) {
-        this.selectedSensorInfo = {
+        this.selectedSensorInfo.set({
           name: seriesName,
           serialNumber: found.extra.serialNumber,
           sensorId: found.extra.sensorId
-        };
-      } else {
-        this.selectedSensorInfo = null;
-      }
-    }
-  }
-
-  private setupRealTimeUpdates(): void {
-    if (this.signalRSubscription) {
-      this.signalRSubscription.unsubscribe();
-    }
-
-    this.signalRSubscription = this.signalRService.sensorDataReceived.subscribe((newReading) => {
-      if (!this.chartData || this.chartData.length === 0) return;
-
-      const seriesIndex = this.chartData.findIndex(series =>
-        series.name.includes(newReading.sensorId) ||
-        this.sensorsData?.find(s => s.id === newReading.sensorId)?.type === series.name
-      );
-
-      if (seriesIndex !== -1) {
-        const updatedSeries = [...this.chartData[seriesIndex].series];
-        updatedSeries.push({
-          name: new Date(newReading.timestamp).toLocaleString(),
-          value: newReading.value,
         });
-        if (updatedSeries.length > 50) updatedSeries.shift();
-
-        const updatedChartData = [...this.chartData];
-        updatedChartData[seriesIndex] = {
-          ...updatedChartData[seriesIndex],
-          series: updatedSeries
-        };
-        this.chartData = updatedChartData;
+      } else {
+        this.selectedSensorInfo.set(null);
       }
-    });
+    }
   }
 
   ngOnDestroy(): void {

@@ -6,6 +6,8 @@ namespace Farm.Infrastructure.Rebositories.Interfaces
     {
         Task<IEnumerable<Sensor>> GetSensorWithReadingByFaildIdAsync(Guid fieldId, DateTime? from, DateTime? to, CancellationToken cancellationToken = default);
         
+        Task<IEnumerable<AFarm>> GetFarmWithFieldWithSensorsAsync(CancellationToken cancellationToken = default);
+        
         Task<SensorReading> AddReadingAsync(SensorReading sensorReading, CancellationToken cancellationToken = default);
     
         Task<IEnumerable<AlertsLog>> GetAlertLogsAsync(CancellationToken cancellationToken = default);

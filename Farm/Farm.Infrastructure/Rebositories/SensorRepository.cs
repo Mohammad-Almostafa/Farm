@@ -27,6 +27,11 @@ namespace Farm.Infrastructure.Rebositories
             return await context.AlertsLogs.Include(a => a.Sensor).Include(a => a.Field).ThenInclude(f => f.AFarm).ToListAsync(cancellationToken);
         }
 
+        public async Task<IEnumerable<AFarm>> GetFarmWithFieldWithSensorsAsync(CancellationToken cancellationToken = default)
+        {
+            return await context.AFarms.Include(f => f.Fields).ThenInclude(f => f.Sensors).ToListAsync(cancellationToken);
+        }
+
         public async Task<IEnumerable<Sensor>> GetSensorWithReadingByFaildIdAsync(Guid fieldId, DateTime? from, DateTime? to, CancellationToken cancellationToken = default)
         {
             from = from ?? DateTime.UtcNow.AddDays(-7);

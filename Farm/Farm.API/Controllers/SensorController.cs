@@ -38,7 +38,49 @@ namespace Farm.API.Controllers
 
             return Ok(dto);
         }
+        [HttpPost("addSensor")]
+        public async Task<IActionResult> AddSensor(SensorDto dto)
+        {
+            var sensor = dto.Adapt<Sensor>();
 
+            await sensorRepository.AddAsync(sensor);
+
+            await sensorRepository.SaveChangesAsync();
+
+            await sensorRepository.AddReadingAsync(new SensorReading
+            {
+                SensorId = sensor.Id,
+                Value = 0,
+                ReadingTimestamp = DateTime.UtcNow
+            });
+
+            await sensorRepository.AddReadingAsync(new SensorReading
+            {
+                SensorId = sensor.Id,
+                Value = 8,
+                ReadingTimestamp = DateTime.UtcNow
+            });
+
+            await sensorRepository.SaveChangesAsync();
+
+            return Created();
+        }
+
+        [HttpGet("alertLogs")]
+        public async Task<IActionResult> GetAlertLogs(CancellationToken cancellationToken)
+        {
+            TypeAdapterConfig<AlertsLog, AlertLogsDto>
+                .NewConfig()
+                .Map(dest => dest.SensorName, src => src.Sensor != null ? src.Sensor.Type : null)
+                .Map(dest => dest.FieldName, src => src.Field != null ? src.Field.Name : null)
+                .Map(dest => dest.FarmName, src => src.Field.AFarm != null ? src.Field.AFarm.Name : null);
+
+            var logs = await sensorRepository.GetAlertLogsAsync(cancellationToken);
+            var dto = logs.Adapt<IEnumerable<AlertLogsDto>>();
+            return Ok(dto);
+        }
+
+        //add mock reading
         [HttpPost("addReading")]
         public async Task<IActionResult> CreateReading([FromBody] SensorReadingDto dto)
         {
@@ -89,45 +131,13 @@ namespace Farm.API.Controllers
             return Created();
         }
 
-        [HttpPost("addSensor")]
-        public async Task<IActionResult> AddSensor(SensorDto dto)
+        [HttpGet]
+        public async Task<IActionResult> GetFarmsWithFieldsWithSensors(
+            CancellationToken cancellationToken = default)
         {
-            var sensor = dto.Adapt<Sensor>();
+            var farms = await sensorRepository.GetFarmWithFieldWithSensorsAsync(cancellationToken);
+            var dto = farms.Adapt<IEnumerable<GetFarmWithFieldsWithSensotrsDto>>();
 
-            await sensorRepository.AddAsync(sensor);
-
-            await sensorRepository.SaveChangesAsync();
-
-            await sensorRepository.AddReadingAsync(new SensorReading
-            {
-                SensorId = sensor.Id,
-                Value = 0,
-                ReadingTimestamp = DateTime.UtcNow
-            });
-
-            await sensorRepository.AddReadingAsync(new SensorReading
-            {
-                SensorId = sensor.Id,
-                Value = 8,
-                ReadingTimestamp = DateTime.UtcNow
-            });
-
-            await sensorRepository.SaveChangesAsync();
-
-            return Created();
-        }
-
-        [HttpGet("alertLogs")]
-        public async Task<IActionResult> GetAlertLogs(CancellationToken cancellationToken)
-        {
-            TypeAdapterConfig<AlertsLog, AlertLogsDto>
-                .NewConfig()
-                .Map(dest => dest.SensorName, src => src.Sensor != null ? src.Sensor.Type : null)
-                .Map(dest => dest.FieldName, src => src.Field != null ? src.Field.Name : null)
-                .Map(dest => dest.FarmName, src => src.Field.AFarm != null ? src.Field.AFarm.Name : null);
-
-            var logs = await sensorRepository.GetAlertLogsAsync(cancellationToken);
-            var dto = logs.Adapt<IEnumerable<AlertLogsDto>>();
             return Ok(dto);
         }
     }

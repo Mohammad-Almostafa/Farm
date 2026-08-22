@@ -1,0 +1,65 @@
+<div class="farm-form">
+  <form [formGroup]="sensorReadingForm" >
+    <div class="coordinates-row" style="align-items: center;">
+      <mat-icon>sensors</mat-icon>
+      <h2>Mock Sensors</h2>
+    </div>
+    <div class="coordinates-row">
+      <mat-form-field>
+        <mat-label>Select Farm</mat-label>
+        <mat-select [(ngModel)]="text1">
+          @for (item of farmList(); track $index) {
+            <mat-option [value]="item.name" (click)="onFarmSelected(item.fields)">{{item.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Select Field</mat-label>
+        <mat-select [(ngModel)]="text2">
+          @for (item of fieldList(); track $index) {
+            <mat-option [value]="item.name" (click)="onFieldSelected(item.sensors)">{{item.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="coordinates-row">
+      <mat-form-field>
+        <mat-label>Select Sensor</mat-label>
+        <mat-select formControlName="sensorId">
+          @for (item of sensorList(); track $index) {
+            <mat-option [value]="item.id" >{{item.type}}</mat-option>
+          }
+        </mat-select>
+        @if (sensorReadingForm.get('sensorId')?.hasError('required')) {
+          <mat-error>Chose sensor pleas!</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>value</mat-label>
+        <input type="number" matInput formControlName="value">
+        @if (sensorReadingForm.get('value')?.hasError('required')) {
+          <mat-error>sensor reading is required</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="coordinates-row">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="saveField()"
+        [disabled]="sensorReadingForm.invalid || isLoading()"
+        class="save-btn">
+        @if (!isLoading()) {
+          <mat-icon>save</mat-icon>
+        }
+        @if (isLoading()) {
+          <mat-spinner diameter="20"></mat-spinner>
+        }
+        {{ isLoading() ? 'Saving...' : 'Save Field' }}
+      </button>
+    </div>
+  </form>
+</div>

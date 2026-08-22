@@ -1,6 +1,6 @@
 <div style="height: 400px; width: 100%;">
   <ngx-charts-line-chart
-    [results]="chartData"
+    [results]="chartData()"
     [xAxis]="true"
     [yAxis]="true"
     [legend]="true"
@@ -9,16 +9,16 @@
     [showYAxisLabel]="true"
     xAxisLabel="Time"
     yAxisLabel="Value"
-    [scheme]="colorScheme"
+    [scheme]="colorScheme()"
     (select)="onSelect($event)">
   </ngx-charts-line-chart>
 </div>
 
-@if(selectedSensorInfo){
+@if(selectedSensorInfo()){
   <div class="sensor-info-panel">
     <h4>Sensor Details</h4>
-    <p><strong>Name:</strong> {{ selectedSensorInfo.name }}</p>
-    <p><strong>Serial Number:</strong> {{ selectedSensorInfo.serialNumber }}</p>
-    <p><strong>Sensor ID:</strong> {{ selectedSensorInfo.sensorId }}</p>
+    <p><strong>Name:</strong> {{ selectedSensorInfo()?.name }}</p>
+    <p><strong>Serial Number:</strong> {{ selectedSensorInfo()?.serialNumber }}</p>
+    <p><strong>Sensor ID:</strong> {{ selectedSensorInfo()?.sensorId }}</p>
   </div>
 }

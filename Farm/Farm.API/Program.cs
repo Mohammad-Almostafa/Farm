@@ -99,7 +99,14 @@ builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection(
 builder.Services.AddHttpClient<WeatherService>();
 
 //SignalR
-builder.Services.AddSignalR();
+builder.Services.AddSignalR(options =>
+{
+    options.ClientTimeoutInterval = TimeSpan.FromSeconds(60);
+
+    options.KeepAliveInterval = TimeSpan.FromSeconds(15);
+
+    options.HandshakeTimeout = TimeSpan.FromSeconds(30);
+});
 
 //entities
 builder.Services.AddScoped<ISensor, SensorRepository>();
@@ -117,6 +124,12 @@ builder.Services.AddCors(options =>
         .AllowCredentials()
         )
     );
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOperations", policy =>
+        policy.RequireRole("Admin"));
+});
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

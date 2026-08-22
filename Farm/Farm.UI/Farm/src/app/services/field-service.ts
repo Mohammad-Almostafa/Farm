@@ -35,7 +35,6 @@ export class FieldService {
   }
 
   getAllFarmWithFields(): Observable<GetFarmWithFields[]> {
-
     return this.httpClient.get<GetFarmWithFields[]>(`${this.fieldApiUrl}/all`, { timeout: 60000});
   }
 
@@ -74,7 +73,7 @@ export class FieldService {
   getAllFieldsWithFarm(): Observable<FieldModel[]> {
     return this.httpClient.get<FieldModel[]>(`${this.fieldApiUrl}/allfieldwithfarm`, { timeout: 60000});
   }
-  
+
   deleteField(id: string|undefined){
     return this.httpClient.delete(`${this.fieldApiUrl}/${id}`)
   }

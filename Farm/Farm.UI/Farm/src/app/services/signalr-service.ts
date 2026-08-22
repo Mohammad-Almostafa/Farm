@@ -15,6 +15,15 @@ export class SignalRService {
     const hubApiUrl = `http://localhost:5052/sensorHub?access_token=${token}`
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(hubApiUrl)
+      .withServerTimeout(60000)
+      .withKeepAliveInterval(15000)
+      .withAutomaticReconnect({
+        nextRetryDelayInMilliseconds: (retryContext) => {
+          if (retryContext.elapsedMilliseconds < 60_000) {
+            return 2000 + Math.random() * 5000;
+          }
+            return 10_000 + Math.random() * 20_000;
+        }})
       .build();
 
     this.hubConnection

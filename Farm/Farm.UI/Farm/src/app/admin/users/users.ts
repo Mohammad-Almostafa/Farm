@@ -87,6 +87,9 @@ export class Users {
   }
 
   deleteUser(userId: string): void {
+    if (userId === localStorage.getItem('sub'))
+      alert('you cant delete your account😅')
+    else
     if (confirm('Are you sure you want to delete this user?')) {
       this.accountService.deleteUser(userId).subscribe({
         next: () => {

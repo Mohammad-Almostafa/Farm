@@ -9,6 +9,7 @@ using Farm.Domain.Enums;
 using Mapster;
 using Farm.Domain.Entities;
 using Farm.Infrastructure.Rebositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Farm.API.Controllers
 {
@@ -60,9 +61,10 @@ namespace Farm.API.Controllers
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()), // SignalR
                     new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),   // UserId
-                    new Claim(JwtRegisteredClaimNames.Name, user.UserName),                    // UserName
+                    new Claim(JwtRegisteredClaimNames.Name, user.UserName),       // UserName
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                    new Claim(JwtRegisteredClaimNames.NameId, user.Role.ToString()),             // Role
+                    new Claim(JwtRegisteredClaimNames.NameId, user.Role.ToString()), // Role 
+                    new Claim(ClaimTypes.Role, user.Role.ToString()),                // Role for localStorage
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()) // TokenId
                 };
 
@@ -113,6 +115,7 @@ namespace Farm.API.Controllers
                     new Claim(JwtRegisteredClaimNames.Name, user.UserName),                    // UserName
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
                     new Claim(JwtRegisteredClaimNames.NameId, user.Role.ToString()),             // Role
+                    new Claim(ClaimTypes.Role, user.Role.ToString()),             // Role for localStorage
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()) // TokenId
                 };
 
@@ -134,6 +137,7 @@ namespace Farm.API.Controllers
             return Ok(new { token = serilaisedToken });
         }
 
+        [Authorize(Policy = "AdminOperations")]
         [HttpGet]
         public async Task<IActionResult> GetAllUsers(CancellationToken cancellationToken) 
         {
@@ -143,7 +147,8 @@ namespace Farm.API.Controllers
             }
             return BadRequest(ModelState);
         }
-        
+
+        [Authorize(Policy = "AdminOperations")]
         [HttpPut("{userId}")]
         public async Task<IActionResult> UpdateUser(Guid userId , UpdateUserDto userDto, CancellationToken cancellationToken) 
         {
@@ -160,6 +165,7 @@ namespace Farm.API.Controllers
             return BadRequest(ModelState);
         }
 
+        [Authorize(Policy = "AdminOperations")]
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteUser(Guid userId, CancellationToken cancellationToken) 
         {

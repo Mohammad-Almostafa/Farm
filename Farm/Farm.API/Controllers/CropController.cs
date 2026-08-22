@@ -4,6 +4,7 @@ using Farm.Domain.Entities;
 using Farm.Infrastructure.Rebositories;
 using Farm.Infrastructure.Rebositories.Interfaces;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Farm.API.Controllers
@@ -145,6 +146,7 @@ namespace Farm.API.Controllers
         }
 
         //admin
+        [Authorize(Policy = "AdminOperations")] 
         [HttpGet("all")]
         public async Task<IActionResult> GetAllCrops(
             CancellationToken cancellationToken = default)
