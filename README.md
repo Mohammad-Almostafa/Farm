@@ -17,15 +17,17 @@ Traditional agriculture often relies on reactive decision-making. This platform 
 
 ## 📸 Project Showcase
 
-*(Tip: Add your actual screenshots/GIFs in a `screenshots/` folder)*
+| 📊 Farm Analytics & Crop Breakdown | 🗺️ Geospatial Land Mapping (Leaflet) |
+|------------------------------------|--------------------------------------|
+| ![Farm Statistics](screenshots/statistics.png) | ![Geospatial Map](screenshots/map.png) |
 
-| Real-Time IoT Telemetry Dashboard | Geospatial Land Map (Leaflet) |
-|-----------------------------------|-------------------------------|
-| ![Telemetry Dashboard](screenshots/dashboard.png) | ![Geospatial Map](screenshots/map.png) |
+| 🔔 Real-Time Telemetry & Alerts (SignalR) | 📋 Actionable Farm Task Operations |
+|-------------------------------------------|------------------------------------|
+| ![Sensor Alerts](screenshots/alerts-simulation.png) | ![Farm Tasks](screenshots/tasks.png) |
 
-| Analytics & Sensor Trends (`ngx-charts`) | Admin Control Center |
-|------------------------------------------|----------------------|
-| ![Analytics](screenshots/analytics.png) | ![Admin Dashboard](screenshots/admin.png) |
+| 📈 Sensor Trends & Historical Data (`ngx-charts`) | ⚙️ Lazy-Loaded Admin Control Hub |
+|--------------------------------------------------|----------------------------------|
+| ![Analytics](screenshots/analytics.png) | ![Admin Dashboard](screenshots/admin_dashboard.png) |
 
 ---
 
@@ -54,6 +56,12 @@ Traditional agriculture often relies on reactive decision-making. This platform 
 - **Mapster** integration for lightning-fast object mapping.
 - **Generic Repository Pattern** supporting server-side searching, filtering, and optimized pagination.
 
+### 📋 **Actionable Farm Task Management:** 
+- Schedule, track, and manage field-specific agricultural operations (such as irrigation, fertilization, and crop care) with live status toggling (Completed/Pending).
+
+### 🔐 **Secure Authentication & RBAC:**
+- Complete Login and Registration workflow using JWT Bearer tokens, featuring client-side form validation and Role-Based Access Control to secure system endpoints.
+
 ---
 
 ## 🗺️ Product Roadmap & Future Expansion
@@ -77,7 +85,7 @@ The current release (**MVP**) establishes a robust data ingestion layer. Thanks 
 - **Logging & Tools:** Serilog (Console & File Sinks), Cloudinary SDK
 
 ### **Frontend (Angular)**
-- **UI Framework:** Angular Material, SCSS
+- **UI Framework:** Angular Material
 - **Mapping & Charts:** Leaflet.js, `ngx-charts`
 - **Asynchronous & State Management:** RxJS, SignalR Client, Lazy Loading Routing
 
