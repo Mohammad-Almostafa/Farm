@@ -1,0 +1,530 @@
+2026-09-20 11:57:00.947 +03:00 [DBG] Registered model binder providers, in the following order: ["Asp.Versioning.ApiVersionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2026-09-20 11:57:02.977 +03:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2026-09-20 11:57:04.273 +03:00 [DBG] The property 'AFarm.UserId' was created in shadow state because there are no eligible CLR members with a matching name.
+2026-09-20 11:57:04.275 +03:00 [DBG] The property 'WeatherHistory.FieldId' was created in shadow state because there are no eligible CLR members with a matching name.
+2026-09-20 11:57:04.317 +03:00 [WRN] No store type was specified for the decimal property 'Latitude' on entity type 'AFarm'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-09-20 11:57:04.319 +03:00 [WRN] No store type was specified for the decimal property 'Longitude' on entity type 'AFarm'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-09-20 11:57:04.321 +03:00 [WRN] No store type was specified for the decimal property 'Value' on entity type 'AlertsLog'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-09-20 11:57:04.323 +03:00 [WRN] No store type was specified for the decimal property 'Yield' on entity type 'Crop'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-09-20 11:57:04.326 +03:00 [WRN] No store type was specified for the decimal property 'MaxRange' on entity type 'Sensor'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-09-20 11:57:04.329 +03:00 [WRN] No store type was specified for the decimal property 'MinRange' on entity type 'Sensor'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-09-20 11:57:04.331 +03:00 [WRN] No store type was specified for the decimal property 'Value' on entity type 'SensorReading'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-09-20 11:57:04.335 +03:00 [WRN] No store type was specified for the decimal property 'Humidity' on entity type 'WeatherHistory'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-09-20 11:57:04.337 +03:00 [WRN] No store type was specified for the decimal property 'Temperature' on entity type 'WeatherHistory'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-09-20 11:57:04.338 +03:00 [WRN] No store type was specified for the decimal property 'WindSpeed' on entity type 'WeatherHistory'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-09-20 11:57:04.466 +03:00 [DBG] Entity Framework Core 9.0.11 initialized 'FarmDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.11' with options: CommandTimeout=60 EngineType=SqlServer 
+2026-09-20 11:57:04.843 +03:00 [DBG] Creating DbConnection.
+2026-09-20 11:57:04.901 +03:00 [DBG] Created DbConnection. (57ms).
+2026-09-20 11:57:04.911 +03:00 [DBG] Opening connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:20.528 +03:00 [DBG] Opened connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:20.580 +03:00 [DBG] Creating DbCommand for 'ExecuteNonQuery'.
+2026-09-20 11:57:20.594 +03:00 [DBG] Created DbCommand for 'ExecuteNonQuery' (10ms).
+2026-09-20 11:57:20.602 +03:00 [DBG] Initialized DbCommand for 'ExecuteNonQuery' (23ms).
+2026-09-20 11:57:20.618 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-09-20 11:57:20.677 +03:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT 1
+2026-09-20 11:57:20.686 +03:00 [DBG] Closing connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:20.694 +03:00 [DBG] Closed connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB' (5ms).
+2026-09-20 11:57:20.700 +03:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2026-09-20 11:57:20.701 +03:00 [DBG] Created DbCommand for 'ExecuteScalar' (0ms).
+2026-09-20 11:57:20.702 +03:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (1ms).
+2026-09-20 11:57:20.703 +03:00 [DBG] Opening connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:20.704 +03:00 [DBG] Opened connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:20.706 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2026-09-20 11:57:21.192 +03:00 [INF] Executed DbCommand (486ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2026-09-20 11:57:21.198 +03:00 [DBG] Closing connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:21.199 +03:00 [DBG] Closed connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB' (0ms).
+2026-09-20 11:57:21.307 +03:00 [DBG] Compiling query expression: 
+'DbSet<Crop_Ref>()
+    .Count()'
+2026-09-20 11:57:21.695 +03:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<int>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT COUNT(*)
+        FROM Crop_Refs AS c) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT COUNT(*)
+        FROM Crop_Refs AS c, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        int? value1;
+        value1 = dataReader.IsDBNull(0) ? default(int?) : (int?)dataReader.GetInt32(0);
+        return (int)value1;
+    }, 
+    contextType: Farm.Infrastructure.Persistence.FarmDbContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)
+    .Single()'
+2026-09-20 11:57:21.742 +03:00 [DBG] Opening connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:21.746 +03:00 [DBG] Opened connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:21.748 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2026-09-20 11:57:21.748 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2026-09-20 11:57:21.749 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2026-09-20 11:57:21.750 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT COUNT(*)
+FROM [Crop_Refs] AS [c]
+2026-09-20 11:57:21.788 +03:00 [INF] Executed DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT COUNT(*)
+FROM [Crop_Refs] AS [c]
+2026-09-20 11:57:21.798 +03:00 [DBG] Closing data reader to 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:21.801 +03:00 [DBG] A data reader for 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB' is being disposed after spending 7ms reading results.
+2026-09-20 11:57:21.803 +03:00 [DBG] Closing connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:21.805 +03:00 [DBG] Closed connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB' (1ms).
+2026-09-20 11:57:21.814 +03:00 [DBG] Compiling query expression: 
+'DbSet<Field>()
+    .Include(f => f.Sensors)'
+2026-09-20 11:57:21.829 +03:00 [DBG] Including navigation: 'Field.Sensors'.
+2026-09-20 11:57:21.961 +03:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<Field>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Client Projections:
+            0 -> Dictionary<IProperty, int> { [Property: Field.Id (Guid) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Field.AFarmId (Guid) Required FK Index, 1], [Property: Field.Area (double) Required, 2], [Property: Field.CreatedAt (DateTime) Required, 3], [Property: Field.DeletedAt (DateTime?), 4], [Property: Field.ImgUrl (string), 5], [Property: Field.IrrigationType (string) Required, 6], [Property: Field.IsDeleted (bool) Required, 7], [Property: Field.IsPastre (bool) Required, 8], [Property: Field.Location (string) Required, 9], [Property: Field.Name (string) Required, 10], [Property: Field.SoilQuality (string) Required, 11], [Property: Field.UpdatedAt (DateTime?), 12] }
+            1 -> 0
+            2 -> Dictionary<IProperty, int> { [Property: Sensor.Id (Guid) Required PK AfterSave:Throw ValueGenerated.OnAdd, 13], [Property: Sensor.CreatedAt (DateTime) Required, 14], [Property: Sensor.DeletedAt (DateTime?), 15], [Property: Sensor.FieldId (Guid) Required FK Index, 16], [Property: Sensor.IsDeleted (bool) Required, 17], [Property: Sensor.MaxRange (decimal) Required, 18], [Property: Sensor.MinRange (decimal) Required, 19], [Property: Sensor.SerialNumber (string) Required, 20], [Property: Sensor.Status (string) Required, 21], [Property: Sensor.Type (string) Required, 22], [Property: Sensor.Unit (string) Required, 23], [Property: Sensor.UpdatedAt (DateTime?), 24] }
+            3 -> 13
+        SELECT f.Id, f.AFarmId, f.Area, f.CreatedAt, f.DeletedAt, f.ImgUrl, f.IrrigationType, f.IsDeleted, f.IsPastre, f.Location, f.Name, f.SoilQuality, f.UpdatedAt, s.Id, s.CreatedAt, s.DeletedAt, s.FieldId, s.IsDeleted, s.MaxRange, s.MinRange, s.SerialNumber, s.Status, s.Type, s.Unit, s.UpdatedAt
+        FROM Fields AS f
+        LEFT JOIN Sensors AS s ON f.Id == s.FieldId
+        ORDER BY f.Id ASC) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Client Projections:
+            0 -> Dictionary<IProperty, int> { [Property: Field.Id (Guid) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Field.AFarmId (Guid) Required FK Index, 1], [Property: Field.Area (double) Required, 2], [Property: Field.CreatedAt (DateTime) Required, 3], [Property: Field.DeletedAt (DateTime?), 4], [Property: Field.ImgUrl (string), 5], [Property: Field.IrrigationType (string) Required, 6], [Property: Field.IsDeleted (bool) Required, 7], [Property: Field.IsPastre (bool) Required, 8], [Property: Field.Location (string) Required, 9], [Property: Field.Name (string) Required, 10], [Property: Field.SoilQuality (string) Required, 11], [Property: Field.UpdatedAt (DateTime?), 12] }
+            1 -> 0
+            2 -> Dictionary<IProperty, int> { [Property: Sensor.Id (Guid) Required PK AfterSave:Throw ValueGenerated.OnAdd, 13], [Property: Sensor.CreatedAt (DateTime) Required, 14], [Property: Sensor.DeletedAt (DateTime?), 15], [Property: Sensor.FieldId (Guid) Required FK Index, 16], [Property: Sensor.IsDeleted (bool) Required, 17], [Property: Sensor.MaxRange (decimal) Required, 18], [Property: Sensor.MinRange (decimal) Required, 19], [Property: Sensor.SerialNumber (string) Required, 20], [Property: Sensor.Status (string) Required, 21], [Property: Sensor.Type (string) Required, 22], [Property: Sensor.Unit (string) Required, 23], [Property: Sensor.UpdatedAt (DateTime?), 24] }
+            3 -> 13
+        SELECT f.Id, f.AFarmId, f.Area, f.CreatedAt, f.DeletedAt, f.ImgUrl, f.IrrigationType, f.IsDeleted, f.IsPastre, f.Location, f.Name, f.SoilQuality, f.UpdatedAt, s.Id, s.CreatedAt, s.DeletedAt, s.FieldId, s.IsDeleted, s.MaxRange, s.MinRange, s.SerialNumber, s.Status, s.Type, s.Unit, s.UpdatedAt
+        FROM Fields AS f
+        LEFT JOIN Sensors AS s ON f.Id == s.FieldId
+        ORDER BY f.Id ASC, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        resultContext.Values == null ? 
+        {
+            Field entity;
+            entity = 
+            {
+                MaterializationContext materializationContext1;
+                IEntityType entityType1;
+                Field instance1;
+                InternalEntityEntry entry1;
+                bool hasNullKey1;
+                materializationContext1 = new MaterializationContext(
+                    [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                    queryContext.Context
+                );
+                instance1 = default(Field);
+                entry1 = queryContext.TryGetEntry(
+                    key: [LIFTABLE Constant: Key: Field.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("Farm.Domain.Entities.Field").FindPrimaryKey()], 
+                    keyValues: new object[]{ (object)dataReader.GetGuid(0) }, 
+                    throwOnNullKey: True, 
+                    hasNullKey: hasNullKey1);
+                !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+                {
+                    entityType1 = entry1.EntityType;
+                    return instance1 = (Field)entry1.Entity;
+                } : 
+                {
+                    ISnapshot shadowSnapshot1;
+                    shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                    entityType1 = [LIFTABLE Constant: EntityType: Field | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("Farm.Domain.Entities.Field")];
+                    instance1 = switch (entityType1)
+                    {
+                        case [LIFTABLE Constant: EntityType: Field | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("Farm.Domain.Entities.Field")]: 
+                            {
+                                return 
+                                {
+                                    Field instance;
+                                    instance = new Field();
+                                    instance.<Id>k__BackingField = dataReader.GetGuid(0);
+                                    instance.<AFarmId>k__BackingField = dataReader.GetGuid(1);
+                                    instance.<Area>k__BackingField = dataReader.GetDouble(2);
+                                    instance.<CreatedAt>k__BackingField = dataReader.GetDateTime(3);
+                                    instance.<DeletedAt>k__BackingField = dataReader.IsDBNull(4) ? default(DateTime?) : (DateTime?)dataReader.GetDateTime(4);
+                                    instance.<ImgUrl>k__BackingField = dataReader.IsDBNull(5) ? default(string) : dataReader.GetString(5);
+                                    instance.<IrrigationType>k__BackingField = dataReader.GetString(6);
+                                    instance.<IsDeleted>k__BackingField = dataReader.GetBoolean(7);
+                                    instance.<IsPastre>k__BackingField = dataReader.GetBoolean(8);
+                                    instance.<Location>k__BackingField = dataReader.GetString(9);
+                                    instance.<Name>k__BackingField = dataReader.GetString(10);
+                                    instance.<SoilQuality>k__BackingField = dataReader.GetString(11);
+                                    instance.<UpdatedAt>k__BackingField = dataReader.IsDBNull(12) ? default(DateTime?) : (DateTime?)dataReader.GetDateTime(12);
+                                    (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                        context: materializationContext1.Context, 
+                                        entity: instance, 
+                                        queryTrackingBehavior: TrackAll, 
+                                        structuralType: [LIFTABLE Constant: EntityType: Field | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("Farm.Domain.Entities.Field")]) : default(void);
+                                    return instance;
+                                }}
+                        default: 
+                            default(Field)
+                    }
+                    ;
+                    entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                        entityType: entityType1, 
+                        entity: instance1, 
+                        snapshot: shadowSnapshot1);
+                    return instance1;
+                } : default(void);
+                return instance1;
+            };
+            resultContext.Values = new object[]{ entity };
+            ShaperProcessingExpressionVisitor.InitializeIncludeCollection<Field, Field>(
+                collectionId: 0, 
+                queryContext: queryContext, 
+                dbDataReader: dataReader, 
+                resultCoordinator: resultCoordinator, 
+                entity: (Field)(resultContext.Values[0]), 
+                parentIdentifier: [LIFTABLE Constant: Func<QueryContext, DbDataReader, object[]> | Resolver: _ => (queryContext, dataReader) => new object[]{ (object)(Guid?)dataReader.GetGuid(0) }], 
+                outerIdentifier: [LIFTABLE Constant: Func<QueryContext, DbDataReader, object[]> | Resolver: _ => (queryContext, dataReader) => new object[]{ (object)(Guid?)dataReader.GetGuid(0) }], 
+                navigation: [LIFTABLE Constant: Navigation: Field.Sensors (ICollection<Sensor>) Collection ToDependent Sensor Inverse: Field | Resolver: namelessParameter{3} => namelessParameter{3}.Dependencies.Model.FindEntityType("Farm.Domain.Entities.Field").FindNavigation("Sensors")], 
+                clrCollectionAccessor: [LIFTABLE Constant: ClrICollectionAccessor<Field, ICollection<Sensor>, Sensor> | Resolver: namelessParameter{4} => namelessParameter{4}.Dependencies.Model.FindEntityType("Farm.Domain.Entities.Field").FindNavigation("Sensors").GetCollectionAccessor()], 
+                trackingQuery: True, 
+                setLoaded: True);
+        } : default(void);
+        ShaperProcessingExpressionVisitor.PopulateIncludeCollection<Field, Sensor>(
+            collectionId: 0, 
+            queryContext: queryContext, 
+            dbDataReader: dataReader, 
+            resultCoordinator: resultCoordinator, 
+            parentIdentifier: [LIFTABLE Constant: Func<QueryContext, DbDataReader, object[]> | Resolver: _ => (queryContext, dataReader) => new object[]{ (object)(Guid?)dataReader.GetGuid(0) }], 
+            outerIdentifier: [LIFTABLE Constant: Func<QueryContext, DbDataReader, object[]> | Resolver: _ => (queryContext, dataReader) => new object[]{ (object)(Guid?)dataReader.GetGuid(0) }], 
+            selfIdentifier: [LIFTABLE Constant: Func<QueryContext, DbDataReader, object[]> | Resolver: _ => (queryContext, dataReader) => new object[]{ (object)dataReader.IsDBNull(13) ? default(Guid?) : (Guid?)dataReader.GetGuid(13) }], 
+            parentIdentifierValueComparers: [LIFTABLE Constant: Func<object, object, bool>[] { Func<object, object, bool> } | Resolver: _ => new Func<object, object, bool>[]{ (left, right) => left == null ? right == null : right != null && (Guid)left == (Guid)right }], 
+            outerIdentifierValueComparers: [LIFTABLE Constant: Func<object, object, bool>[] { Func<object, object, bool> } | Resolver: _ => new Func<object, object, bool>[]{ (left, right) => left == null ? right == null : right != null && (Guid)left == (Guid)right }], 
+            selfIdentifierValueComparers: [LIFTABLE Constant: Func<object, object, bool>[] { Func<object, object, bool> } | Resolver: _ => new Func<object, object, bool>[]{ (left, right) => left == null ? right == null : right != null && (Guid)left == (Guid)right }], 
+            innerShaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+            {
+                Sensor entity;
+                entity = 
+                {
+                    MaterializationContext materializationContext2;
+                    IEntityType entityType2;
+                    Sensor instance2;
+                    InternalEntityEntry entry2;
+                    bool hasNullKey2;
+                    materializationContext2 = new MaterializationContext(
+                        [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                        queryContext.Context
+                    );
+                    instance2 = default(Sensor);
+                    entry2 = queryContext.TryGetEntry(
+                        key: [LIFTABLE Constant: Key: Sensor.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("Farm.Domain.Entities.Sensor").FindPrimaryKey()], 
+                        keyValues: new object[]{ dataReader.IsDBNull(13) ? default(object) : (object)dataReader.GetGuid(13) }, 
+                        throwOnNullKey: False, 
+                        hasNullKey: hasNullKey2);
+                    !(hasNullKey2) ? entry2 != default(InternalEntityEntry) ? 
+                    {
+                        entityType2 = entry2.EntityType;
+                        return instance2 = (Sensor)entry2.Entity;
+                    } : 
+                    {
+                        ISnapshot shadowSnapshot2;
+                        shadowSnapshot2 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                        entityType2 = [LIFTABLE Constant: EntityType: Sensor | Resolver: namelessParameter{5} => namelessParameter{5}.Dependencies.Model.FindEntityType("Farm.Domain.Entities.Sensor")];
+                        instance2 = switch (entityType2)
+                        {
+                            case [LIFTABLE Constant: EntityType: Sensor | Resolver: namelessParameter{6} => namelessParameter{6}.Dependencies.Model.FindEntityType("Farm.Domain.Entities.Sensor")]: 
+                                {
+                                    return 
+                                    {
+                                        Sensor instance;
+                                        instance = new Sensor();
+                                        instance.<Id>k__BackingField = dataReader.IsDBNull(13) ? default(Guid) : dataReader.GetGuid(13);
+                                        instance.<CreatedAt>k__BackingField = dataReader.IsDBNull(14) ? default(DateTime) : dataReader.GetDateTime(14);
+                                        instance.<DeletedAt>k__BackingField = dataReader.IsDBNull(15) ? default(DateTime?) : (DateTime?)dataReader.GetDateTime(15);
+                                        instance.<FieldId>k__BackingField = dataReader.IsDBNull(16) ? default(Guid) : dataReader.GetGuid(16);
+                                        instance.<IsDeleted>k__BackingField = dataReader.IsDBNull(17) ? default(bool) : dataReader.GetBoolean(17);
+                                        instance.<MaxRange>k__BackingField = dataReader.IsDBNull(18) ? default(decimal) : dataReader.GetDecimal(18);
+                                        instance.<MinRange>k__BackingField = dataReader.IsDBNull(19) ? default(decimal) : dataReader.GetDecimal(19);
+                                        instance.<SerialNumber>k__BackingField = dataReader.IsDBNull(20) ? default(string) : dataReader.GetString(20);
+                                        instance.<Status>k__BackingField = dataReader.IsDBNull(21) ? default(string) : dataReader.GetString(21);
+                                        instance.<Type>k__BackingField = dataReader.IsDBNull(22) ? default(string) : dataReader.GetString(22);
+                                        instance.<Unit>k__BackingField = dataReader.IsDBNull(23) ? default(string) : dataReader.GetString(23);
+                                        instance.<UpdatedAt>k__BackingField = dataReader.IsDBNull(24) ? default(DateTime?) : (DateTime?)dataReader.GetDateTime(24);
+                                        (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                            context: materializationContext2.Context, 
+                                            entity: instance, 
+                                            queryTrackingBehavior: TrackAll, 
+                                            structuralType: [LIFTABLE Constant: EntityType: Sensor | Resolver: namelessParameter{7} => namelessParameter{7}.Dependencies.Model.FindEntityType("Farm.Domain.Entities.Sensor")]) : default(void);
+                                        return instance;
+                                    }}
+                            default: 
+                                default(Sensor)
+                        }
+                        ;
+                        entry2 = entityType2 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                            entityType: entityType2, 
+                            entity: instance2, 
+                            snapshot: shadowSnapshot2);
+                        return instance2;
+                    } : default(void);
+                    return instance2;
+                };
+                return entity;
+            }, 
+            inverseNavigation: [LIFTABLE Constant: Navigation: Sensor.Field (Field) ToPrincipal Field Inverse: Sensors | Resolver: namelessParameter{8} => namelessParameter{8}.Dependencies.Model.FindEntityType("Farm.Domain.Entities.Sensor").FindNavigation("Field")], 
+            fixup: (namelessParameter{9}, namelessParameter{10}) => 
+            {
+                [LIFTABLE Constant: ClrICollectionAccessor<Field, ICollection<Sensor>, Sensor> | Resolver: namelessParameter{11} => namelessParameter{11}.Dependencies.Model.FindEntityType("Farm.Domain.Entities.Field").FindNavigation("Sensors").GetCollectionAccessor()].Add(
+                    entity: namelessParameter{9}, 
+                    value: namelessParameter{10}, 
+                    forMaterialization: True);
+                return namelessParameter{10}.<Field>k__BackingField = namelessParameter{9};
+            }, 
+            trackingQuery: True);
+        return IsTrue(resultCoordinator.ResultReady)
+         ? (Field)(resultContext.Values[0]) : default(Field);
+    }, 
+    contextType: Farm.Infrastructure.Persistence.FarmDbContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2026-09-20 11:57:21.992 +03:00 [DBG] Opening connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:21.993 +03:00 [DBG] Opened connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:21.994 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2026-09-20 11:57:21.994 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2026-09-20 11:57:21.995 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2026-09-20 11:57:21.996 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [f].[Id], [f].[AFarmId], [f].[Area], [f].[CreatedAt], [f].[DeletedAt], [f].[ImgUrl], [f].[IrrigationType], [f].[IsDeleted], [f].[IsPastre], [f].[Location], [f].[Name], [f].[SoilQuality], [f].[UpdatedAt], [s].[Id], [s].[CreatedAt], [s].[DeletedAt], [s].[FieldId], [s].[IsDeleted], [s].[MaxRange], [s].[MinRange], [s].[SerialNumber], [s].[Status], [s].[Type], [s].[Unit], [s].[UpdatedAt]
+FROM [Fields] AS [f]
+LEFT JOIN [Sensors] AS [s] ON [f].[Id] = [s].[FieldId]
+ORDER BY [f].[Id]
+2026-09-20 11:57:22.005 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+SELECT [f].[Id], [f].[AFarmId], [f].[Area], [f].[CreatedAt], [f].[DeletedAt], [f].[ImgUrl], [f].[IrrigationType], [f].[IsDeleted], [f].[IsPastre], [f].[Location], [f].[Name], [f].[SoilQuality], [f].[UpdatedAt], [s].[Id], [s].[CreatedAt], [s].[DeletedAt], [s].[FieldId], [s].[IsDeleted], [s].[MaxRange], [s].[MinRange], [s].[SerialNumber], [s].[Status], [s].[Type], [s].[Unit], [s].[UpdatedAt]
+FROM [Fields] AS [f]
+LEFT JOIN [Sensors] AS [s] ON [f].[Id] = [s].[FieldId]
+ORDER BY [f].[Id]
+2026-09-20 11:57:22.164 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Field' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.260 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Sensor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.291 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Sensor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.298 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Field' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.301 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Sensor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.304 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Sensor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.307 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Field' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.308 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Sensor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.309 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Sensor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.310 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Field' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.311 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Sensor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.312 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Sensor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.313 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Field' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.314 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Sensor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.315 +03:00 [DBG] Context 'FarmDbContext' started tracking 'Sensor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2026-09-20 11:57:22.316 +03:00 [DBG] Closing data reader to 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:22.317 +03:00 [DBG] A data reader for 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB' is being disposed after spending 308ms reading results.
+2026-09-20 11:57:22.318 +03:00 [DBG] Closing connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:22.319 +03:00 [DBG] Closed connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB' (1ms).
+2026-09-20 11:57:22.322 +03:00 [DBG] 'FarmDbContext' disposed.
+2026-09-20 11:57:22.324 +03:00 [DBG] Disposing connection to database 'Farm.API.DB' on server '(localdb)\MSSQLLocalDB'.
+2026-09-20 11:57:22.327 +03:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2026-09-20 11:57:22.396 +03:00 [DBG] Registered SignalR Protocol: json, implemented by Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.
+2026-09-20 11:57:22.476 +03:00 [DBG] Hosting starting
+2026-09-20 11:57:22.583 +03:00 [INF] User profile is available. Using 'C:\Users\الخبير\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-09-20 11:57:22.626 +03:00 [DBG] Reading data from file 'C:\Users\الخبير\AppData\Local\ASP.NET\DataProtection-Keys\key-810a5820-fc56-4701-bc3e-63234aa9d5b9.xml'.
+2026-09-20 11:57:22.663 +03:00 [DBG] Reading data from file 'C:\Users\الخبير\AppData\Local\ASP.NET\DataProtection-Keys\key-893de759-5dc0-4f71-8f45-13bfb3ad1c64.xml'.
+2026-09-20 11:57:22.686 +03:00 [DBG] Reading data from file 'C:\Users\الخبير\AppData\Local\ASP.NET\DataProtection-Keys\key-8d781c61-1938-4898-a73c-5d12ef6cac24.xml'.
+2026-09-20 11:57:22.706 +03:00 [DBG] Reading data from file 'C:\Users\الخبير\AppData\Local\ASP.NET\DataProtection-Keys\key-bb3b4f49-889a-4bb8-b2a6-f157d52e2952.xml'.
+2026-09-20 11:57:22.736 +03:00 [DBG] Reading data from file 'C:\Users\الخبير\AppData\Local\ASP.NET\DataProtection-Keys\key-ea4b687f-bea5-4fb8-ada8-fdbb14290c9e.xml'.
+2026-09-20 11:57:22.764 +03:00 [DBG] Reading data from file 'C:\Users\الخبير\AppData\Local\ASP.NET\DataProtection-Keys\key-f036fec7-9247-48a6-8692-deeb5abb8fb6.xml'.
+2026-09-20 11:57:22.812 +03:00 [DBG] Found key {810a5820-fc56-4701-bc3e-63234aa9d5b9}.
+2026-09-20 11:57:22.830 +03:00 [DBG] Found key {893de759-5dc0-4f71-8f45-13bfb3ad1c64}.
+2026-09-20 11:57:22.836 +03:00 [DBG] Found key {8d781c61-1938-4898-a73c-5d12ef6cac24}.
+2026-09-20 11:57:22.838 +03:00 [DBG] Found key {bb3b4f49-889a-4bb8-b2a6-f157d52e2952}.
+2026-09-20 11:57:22.839 +03:00 [DBG] Found key {ea4b687f-bea5-4fb8-ada8-fdbb14290c9e}.
+2026-09-20 11:57:22.841 +03:00 [DBG] Found key {f036fec7-9247-48a6-8692-deeb5abb8fb6}.
+2026-09-20 11:57:22.853 +03:00 [DBG] Considering key {810a5820-fc56-4701-bc3e-63234aa9d5b9} with expiration date 2026-10-17 11:24:06Z as default key.
+2026-09-20 11:57:22.861 +03:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2026-09-20 11:57:22.867 +03:00 [DBG] Decrypting secret element using Windows DPAPI.
+2026-09-20 11:57:22.870 +03:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2026-09-20 11:57:22.875 +03:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2026-09-20 11:57:22.877 +03:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2026-09-20 11:57:22.881 +03:00 [DBG] Using key {810a5820-fc56-4701-bc3e-63234aa9d5b9} as the default key.
+2026-09-20 11:57:22.883 +03:00 [DBG] Key ring with default key {810a5820-fc56-4701-bc3e-63234aa9d5b9} was loaded during application startup.
+2026-09-20 11:57:22.896 +03:00 [DBG] Middleware loaded
+2026-09-20 11:57:22.902 +03:00 [DBG] Middleware loaded. Script /_framework/aspnetcore-browser-refresh.js (16500 B).
+2026-09-20 11:57:22.906 +03:00 [DBG] Middleware loaded. Script /_framework/blazor-hotreload.js (799 B).
+2026-09-20 11:57:23.505 +03:00 [DBG] Middleware configuration started with options: {AllowedHosts = *, AllowEmptyHosts = True, IncludeFailureMessage = True}
+2026-09-20 11:57:23.510 +03:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2026-09-20 11:57:23.519 +03:00 [DBG] Middleware loaded: DOTNET_MODIFIABLE_ASSEMBLIES=debug, __ASPNETCORE_BROWSER_TOOLS=true
+2026-09-20 11:57:23.682 +03:00 [DBG] Connection id "0HNOMUKNURK1N" accepted.
+2026-09-20 11:57:23.692 +03:00 [DBG] Connection id "0HNOMUKNURK1N" started.
+2026-09-20 11:57:23.696 +03:00 [DBG] Connection id "0HNOMUKNURK1N" received FIN.
+2026-09-20 11:57:23.712 +03:00 [DBG] Connection id "0HNOMUKNURK1N" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-09-20 11:57:23.714 +03:00 [INF] Now listening on: http://localhost:5052
+2026-09-20 11:57:23.716 +03:00 [DBG] Loaded hosting startup assembly Farm.API
+2026-09-20 11:57:23.716 +03:00 [DBG] Connection id "0HNOMUKNURK1N" disconnecting.
+2026-09-20 11:57:23.718 +03:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2026-09-20 11:57:23.720 +03:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2026-09-20 11:57:23.722 +03:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2026-09-20 11:57:23.725 +03:00 [DBG] Connection id "0HNOMUKNURK1N" stopped.
+2026-09-20 11:57:23.732 +03:00 [DBG] Executing API description provider 'EndpointMetadataApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2026-09-20 11:57:23.735 +03:00 [DBG] Executing API description provider 'DefaultApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2026-09-20 11:57:23.760 +03:00 [DBG] Executing API description provider 'JsonPatchOperationsArrayProvider' from assembly Microsoft.AspNetCore.Mvc.NewtonsoftJson v9.0.13.0.
+2026-09-20 11:57:23.767 +03:00 [DBG] Executing API description provider 'VersionedApiDescriptionProvider' from assembly Asp.Versioning.Mvc.ApiExplorer v8.1.0.0.
+2026-09-20 11:57:23.882 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-09-20 11:57:23.884 +03:00 [INF] Hosting environment: Development
+2026-09-20 11:57:23.886 +03:00 [INF] Content root path: G:\كورس Csharp\1000 programer\Farm\Farm\Farm.API
+2026-09-20 11:57:23.892 +03:00 [DBG] Hosting started
+2026-09-20 11:57:27.436 +03:00 [DBG] Connection id "0HNOMUKNURK1O" accepted.
+2026-09-20 11:57:27.437 +03:00 [DBG] Connection id "0HNOMUKNURK1O" started.
+2026-09-20 11:57:27.437 +03:00 [DBG] Connection id "0HNOMUKNURK1P" accepted.
+2026-09-20 11:57:27.439 +03:00 [DBG] Connection id "0HNOMUKNURK1P" started.
+2026-09-20 11:57:27.696 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5052/swagger - null null
+2026-09-20 11:57:27.816 +03:00 [DBG] Connection id "0HNOMUKNURK1P" received FIN.
+2026-09-20 11:57:27.818 +03:00 [DBG] Connection id "0HNOMUKNURK1P" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-09-20 11:57:27.826 +03:00 [DBG] Connection id "0HNOMUKNURK1P" disconnecting.
+2026-09-20 11:57:27.836 +03:00 [DBG] Connection id "0HNOMUKNURK1P" stopped.
+2026-09-20 11:57:28.109 +03:00 [DBG] No candidates found for the request path '/swagger'
+2026-09-20 11:57:28.112 +03:00 [DBG] Request did not match any endpoints
+2026-09-20 11:57:28.172 +03:00 [DBG] Connection id "0HNOMUKNURK1O" completed keep alive response.
+2026-09-20 11:57:28.173 +03:00 [DBG] Connection id "0HNOMUKNURK1O" received FIN.
+2026-09-20 11:57:28.176 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5052/swagger - 301 0 null 500.7946ms
+2026-09-20 11:57:28.177 +03:00 [DBG] Connection id "0HNOMUKNURK1O" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-09-20 11:57:28.177 +03:00 [DBG] Connection id "0HNOMUKNURK1Q" accepted.
+2026-09-20 11:57:28.183 +03:00 [DBG] Connection id "0HNOMUKNURK1O" disconnecting.
+2026-09-20 11:57:28.184 +03:00 [DBG] Connection id "0HNOMUKNURK1Q" started.
+2026-09-20 11:57:28.185 +03:00 [DBG] Connection id "0HNOMUKNURK1O" stopped.
+2026-09-20 11:57:28.188 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5052/swagger/index.html - null null
+2026-09-20 11:57:28.198 +03:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2026-09-20 11:57:28.199 +03:00 [DBG] Request did not match any endpoints
+2026-09-20 11:57:28.334 +03:00 [DBG] Response markup is scheduled to include Browser Link script injection.
+2026-09-20 11:57:28.338 +03:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2026-09-20 11:57:28.359 +03:00 [DBG] Response markup was updated to include Browser Link script injection.
+2026-09-20 11:57:28.362 +03:00 [DBG] Response markup was updated to include browser refresh script injection.
+2026-09-20 11:57:28.365 +03:00 [DBG] Connection id "0HNOMUKNURK1Q" completed keep alive response.
+2026-09-20 11:57:28.366 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5052/swagger/index.html - 200 null text/html;charset=utf-8 178.2379ms
+2026-09-20 11:57:28.372 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5052/swagger/swagger-ui.css - null null
+2026-09-20 11:57:28.373 +03:00 [DBG] Connection id "0HNOMUKNURK1R" accepted.
+2026-09-20 11:57:28.377 +03:00 [DBG] No candidates found for the request path '/swagger/swagger-ui.css'
+2026-09-20 11:57:28.380 +03:00 [DBG] Connection id "0HNOMUKNURK1S" accepted.
+2026-09-20 11:57:28.381 +03:00 [DBG] Connection id "0HNOMUKNURK1R" started.
+2026-09-20 11:57:28.381 +03:00 [DBG] Request did not match any endpoints
+2026-09-20 11:57:28.383 +03:00 [DBG] Connection id "0HNOMUKNURK1S" started.
+2026-09-20 11:57:28.384 +03:00 [DBG] Connection id "0HNOMUKNURK1T" accepted.
+2026-09-20 11:57:28.392 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5052/swagger/index.css - null null
+2026-09-20 11:57:28.395 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5052/swagger/swagger-ui-bundle.js - null null
+2026-09-20 11:57:28.396 +03:00 [DBG] Connection id "0HNOMUKNURK1T" started.
+2026-09-20 11:57:28.432 +03:00 [DBG] Connection id "0HNOMUKNURK1U" accepted.
+2026-09-20 11:57:28.434 +03:00 [DBG] No candidates found for the request path '/swagger/index.css'
+2026-09-20 11:57:28.437 +03:00 [DBG] No candidates found for the request path '/swagger/swagger-ui-bundle.js'
+2026-09-20 11:57:28.438 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5052/swagger/swagger-ui-standalone-preset.js - null null
+2026-09-20 11:57:28.439 +03:00 [DBG] Connection id "0HNOMUKNURK1U" started.
+2026-09-20 11:57:28.465 +03:00 [DBG] Connection id "0HNOMUKNURK1V" accepted.
+2026-09-20 11:57:28.466 +03:00 [DBG] Request did not match any endpoints
+2026-09-20 11:57:28.467 +03:00 [DBG] Request did not match any endpoints
+2026-09-20 11:57:28.471 +03:00 [DBG] No candidates found for the request path '/swagger/swagger-ui-standalone-preset.js'
+2026-09-20 11:57:28.473 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5052/swagger/index.js - null null
+2026-09-20 11:57:28.474 +03:00 [DBG] Connection id "0HNOMUKNURK1V" started.
+2026-09-20 11:57:28.488 +03:00 [DBG] Request did not match any endpoints
+2026-09-20 11:57:28.490 +03:00 [DBG] No candidates found for the request path '/swagger/index.js'
+2026-09-20 11:57:28.491 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5052/_framework/aspnetcore-browser-refresh.js - null null
+2026-09-20 11:57:28.492 +03:00 [DBG] Request did not match any endpoints
+2026-09-20 11:57:28.498 +03:00 [DBG] Connection id "0HNOMUKNURK1U" completed keep alive response.
+2026-09-20 11:57:28.501 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5052/swagger/index.js - 200 null application/javascript;charset=utf-8 27.82ms
+2026-09-20 11:57:28.501 +03:00 [DBG] Script injected: /_framework/aspnetcore-browser-refresh.js
+2026-09-20 11:57:28.506 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5052/_vs/browserLink - null null
+2026-09-20 11:57:28.507 +03:00 [DBG] Connection id "0HNOMUKNURK1V" completed keep alive response.
+2026-09-20 11:57:28.509 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5052/_framework/aspnetcore-browser-refresh.js - 200 16500 application/javascript; charset=utf-8 17.6077ms
+2026-09-20 11:57:28.644 +03:00 [DBG] Connection id "0HNOMUKNURK1Q" completed keep alive response.
+2026-09-20 11:57:28.644 +03:00 [DBG] Connection id "0HNOMUKNURK1R" completed keep alive response.
+2026-09-20 11:57:28.645 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5052/swagger/swagger-ui.css - 200 23647 text/css 272.9427ms
+2026-09-20 11:57:28.646 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5052/swagger/index.css - 200 152 text/css 253.9636ms
+2026-09-20 11:57:28.731 +03:00 [DBG] Connection id "0HNOMUKNURK1T" completed keep alive response.
+2026-09-20 11:57:28.734 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5052/swagger/swagger-ui-standalone-preset.js - 200 77352 text/javascript 295.7408ms
+2026-09-20 11:57:28.772 +03:00 [DBG] Connection id "0HNOMUKNURK1U" completed keep alive response.
+2026-09-20 11:57:28.775 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5052/_vs/browserLink - 200 null text/javascript; charset=UTF-8 268.6472ms
+2026-09-20 11:57:28.787 +03:00 [DBG] Connection id "0HNOMUKNURK1S" completed keep alive response.
+2026-09-20 11:57:28.788 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5052/swagger/swagger-ui-bundle.js - 200 424767 text/javascript 392.6254ms
+2026-09-20 11:57:29.069 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5052/openapi/v1.json - null null
+2026-09-20 11:57:29.079 +03:00 [DBG] 1 candidate(s) found for the request path '/openapi/v1.json'
+2026-09-20 11:57:29.107 +03:00 [DBG] Endpoint 'HTTP: GET /openapi/{documentName}.json' with route pattern '/openapi/{documentName}.json' is valid for the request path '/openapi/v1.json'
+2026-09-20 11:57:29.112 +03:00 [DBG] Request matched endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-09-20 11:57:29.143 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5052/swagger/favicon-32x32.png - null null
+2026-09-20 11:57:29.147 +03:00 [DBG] No candidates found for the request path '/swagger/favicon-32x32.png'
+2026-09-20 11:57:29.148 +03:00 [DBG] Request did not match any endpoints
+2026-09-20 11:57:29.150 +03:00 [DBG] Connection id "0HNOMUKNURK1U" completed keep alive response.
+2026-09-20 11:57:29.152 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5052/swagger/favicon-32x32.png - 200 628 image/png 8.8873ms
+2026-09-20 11:57:31.256 +03:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2026-09-20 11:57:31.264 +03:00 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-09-20 11:57:31.615 +03:00 [DBG] Connection id "0HNOMUKNURK1V" received FIN.
+2026-09-20 11:57:31.615 +03:00 [DBG] Connection id "0HNOMUKNURK1Q" received FIN.
+2026-09-20 11:57:31.619 +03:00 [DBG] Connection id "0HNOMUKNURK1Q" disconnecting.
+2026-09-20 11:57:31.616 +03:00 [DBG] Connection id "0HNOMUKNURK1T" received FIN.
+2026-09-20 11:57:31.616 +03:00 [DBG] Connection id "0HNOMUKNURK1U" received FIN.
+2026-09-20 11:57:31.617 +03:00 [DBG] Connection id "0HNOMUKNURK1V" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-09-20 11:57:31.615 +03:00 [DBG] Connection id "0HNOMUKNURK1R" received FIN.
+2026-09-20 11:57:31.631 +03:00 [DBG] Connection id "0HNOMUKNURK1Q" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-09-20 11:57:31.632 +03:00 [DBG] Connection id "0HNOMUKNURK1T" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-09-20 11:57:31.634 +03:00 [DBG] Connection id "0HNOMUKNURK1U" disconnecting.
+2026-09-20 11:57:31.636 +03:00 [DBG] Connection id "0HNOMUKNURK1V" disconnecting.
+2026-09-20 11:57:31.643 +03:00 [DBG] Connection id "0HNOMUKNURK1R" disconnecting.
+2026-09-20 11:57:31.645 +03:00 [DBG] Connection id "0HNOMUKNURK1T" disconnecting.
+2026-09-20 11:57:31.646 +03:00 [DBG] Connection id "0HNOMUKNURK1U" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-09-20 11:57:31.647 +03:00 [DBG] Connection id "0HNOMUKNURK1V" stopped.
+2026-09-20 11:57:31.648 +03:00 [DBG] Connection id "0HNOMUKNURK1R" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-09-20 11:57:31.649 +03:00 [DBG] Connection id "0HNOMUKNURK1T" stopped.
+2026-09-20 11:57:31.654 +03:00 [DBG] Connection id "0HNOMUKNURK1U" stopped.
+2026-09-20 11:57:31.654 +03:00 [DBG] Connection id "0HNOMUKNURK1R" stopped.
+2026-09-20 11:57:31.654 +03:00 [DBG] Connection id "0HNOMUKNURK1Q" stopped.
+2026-09-20 11:57:31.758 +03:00 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-09-20 11:57:31.759 +03:00 [DBG] Connection id "0HNOMUKNURK1S" completed keep alive response.
+2026-09-20 11:57:31.759 +03:00 [DBG] Connection id "0HNOMUKNURK1S" received FIN.
+2026-09-20 11:57:31.761 +03:00 [DBG] Connection id "0HNOMUKNURK1S" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-09-20 11:57:31.763 +03:00 [DBG] Connection id "0HNOMUKNURK1S" disconnecting.
+2026-09-20 11:57:31.763 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5052/openapi/v1.json - 200 null application/json;charset=utf-8 2693.4074ms
+2026-09-20 11:57:31.767 +03:00 [DBG] Connection id "0HNOMUKNURK1S" stopped.
